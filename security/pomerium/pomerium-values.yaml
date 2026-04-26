@@ -1,0 +1,8 @@
+config:
+  rootDomain: pomerium.streamvault.internal
+  generateSignedJWT: true
+authenticate:
+  idp:
+    provider: oidc
+    url: https://keycloak.streamvault.internal
+ingressController: { enabled: true }

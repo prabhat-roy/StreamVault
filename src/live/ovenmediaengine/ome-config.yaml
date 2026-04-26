@@ -1,0 +1,11 @@
+# OvenMediaEngine — sub-second LL-HLS / WebRTC live
+server:
+  name: streamvault-live
+  type: live
+  publishers: [LLHLS, WebRTC]
+  providers:  [RTMP, SRT, MPEGTS]
+hosts:
+  - { name: streamvault, primary: ome.streamvault.com, distribution: live }
+recordings:
+  enabled: true
+  outputPath: s3://streamvault-recordings/

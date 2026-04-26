@@ -1,0 +1,7 @@
+creation_rules:
+  - path_regex: secrets/streamvault/.*\.yaml
+    kms: arn:aws:kms:us-east-1:111111111111:alias/streamvault-sops
+  - path_regex: secrets/streamvault/gcp/.*\.yaml
+    gcp_kms: projects/streamvault-prod/locations/global/keyRings/streamvault/cryptoKeys/sops
+  - path_regex: secrets/streamvault/azure/.*\.yaml
+    azure_keyvault: https://streamvault-kv.vault.azure.net/keys/sops/abc123

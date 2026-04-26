@@ -1,0 +1,9 @@
+zitadel:
+  masterkey: change-me-32-bytes-minimum
+  configmapConfig:
+    ExternalDomain: zitadel.streamvault.internal
+    ExternalSecure: true
+    ExternalPort: 443
+ingress:
+  enabled: true
+  hosts: [{ host: zitadel.streamvault.internal }]

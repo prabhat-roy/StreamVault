@@ -1,0 +1,6 @@
+global:
+  novuVersion: 1.0.0
+api: { ingress: { enabled: true, hosts: [{ host: novu-api.streamvault.internal }] } }
+web: { ingress: { enabled: true, hosts: [{ host: novu.streamvault.internal }] } }
+mongodb: { enabled: true }
+redis:   { enabled: true }

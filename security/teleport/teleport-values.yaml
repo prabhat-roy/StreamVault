@@ -1,0 +1,10 @@
+clusterName: streamvault.teleport.internal
+authentication:
+  type: github
+  githubConnector:
+    name: github
+    redirectUrl: https://teleport.streamvault.internal/v1/webapi/github/callback
+kubeClusterName: streamvault-prod
+ingress:
+  enabled: true
+  hostname: teleport.streamvault.internal
