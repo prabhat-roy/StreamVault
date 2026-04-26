@@ -1,0 +1,1 @@
+﻿{ "streaming": { "abr": { "useDefaultABRRules": true }, "buffer": { "bufferTimeAtTopQuality": 30 } }, "protection": { "detectPlayreadyMessageFormat": true } }

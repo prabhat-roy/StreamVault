@@ -1,0 +1,3 @@
+﻿# Tdarr — distributed transcode + media-library automation
+image: { repository: ghcr.io/haveagitgat/tdarr, tag: latest }
+tdarr: { server: { enabled: true }, nodes: 4 }

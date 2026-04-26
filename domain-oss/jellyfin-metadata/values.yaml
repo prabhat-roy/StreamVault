@@ -1,0 +1,3 @@
+﻿# Jellyfin metadata pipelines (media tagging + scrape)
+image: { repository: jellyfin/jellyfin, tag: 10.9 }
+jellyfin: { metadata: { providers: [tmdb, tvdb, anidb], plugins: [intro-skipper, fingerprint] } }

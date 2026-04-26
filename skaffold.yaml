@@ -1,0 +1,16 @@
+﻿# Skaffold pipeline for StreamVault
+apiVersion: skaffold/v4beta11
+kind: Config
+metadata: { name: streamvault }
+build:
+  artifacts:
+    - { image: streamvault/api-gateway, context: src/api-gateway }
+    - { image: streamvault/identity-service, context: src/identity-service }
+  local: { push: false }
+deploy:
+  helm:
+    releases:
+      - { name: api-gateway, chartPath: helm/charts/api-gateway, namespace: streamvault }
+profiles:
+  - name: prod
+    deploy: { kubectl: { manifests: ["manifests/prod/*.yaml"] } }

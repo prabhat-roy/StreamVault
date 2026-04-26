@@ -1,0 +1,6 @@
+﻿# Sourcegraph (OSS) — universal code search across StreamVault
+image: { repository: sourcegraph/server, tag: 5.5.0 }
+sourcegraph:
+  externalURL: https://sourcegraph.streamvault.internal
+  repositoriesToAdd: [github.com/prabhat-roy/StreamVault]
+ingress: { enabled: true, hosts: [{ host: sourcegraph.streamvault.internal }] }

@@ -1,0 +1,1 @@
+﻿{ "maxBufferLength": 30, "liveSyncDuration": 4, "enableWorker": true, "lowLatencyMode": true }

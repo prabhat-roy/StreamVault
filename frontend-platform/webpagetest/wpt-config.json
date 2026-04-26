@@ -1,0 +1,7 @@
+﻿{
+  "server": "https://wpt.streamvault.internal",
+  "tests": [
+    { "url": "https://www.streamvault.internal/", "location": "Dulles:Chrome", "runs": 3, "connectivity": "4G" },
+    { "url": "https://app.streamvault.internal/", "location": "Mumbai:Chrome", "runs": 3, "connectivity": "Cable" }
+  ]
+}

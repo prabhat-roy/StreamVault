@@ -1,0 +1,9 @@
+﻿apiVersion: backstage.io/v1alpha1
+kind: System
+metadata: { name: streamvault, description: StreamVault enterprise platform }
+spec: { owner: platform-team, domain: streamvault }
+---
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata: { name: streamvault }
+spec: { owner: platform-team }
