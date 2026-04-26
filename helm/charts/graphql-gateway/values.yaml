@@ -1,0 +1,9 @@
+image: { repository: harbor.streamvault.internal/streamvault/graphql-gateway, tag: latest, pullPolicy: IfNotPresent }
+replicaCount: 3
+service: { type: ClusterIP, port: 50002 }
+resources: { requests: { cpu: 200m, memory: 256Mi }, limits: { cpu: 1500m, memory: 768Mi } }
+env: { LOG_LEVEL: info, PORT: "50002" }
+serviceAccount: { create: true, name: graphql-gateway, annotations: {} }
+podSecurityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+containerSecurityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }
+domain: platform

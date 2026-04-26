@@ -1,0 +1,28 @@
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: api-gateway, namespace: streamvault }
+spec:
+  minAvailable: 2
+  selector: { matchLabels: { app.kubernetes.io/name: api-gateway } }
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: stream-packager, namespace: streamvault }
+spec:
+  minAvailable: 4
+  selector: { matchLabels: { app.kubernetes.io/name: stream-packager } }
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: drm-service, namespace: streamvault }
+spec:
+  minAvailable: 3
+  selector: { matchLabels: { app.kubernetes.io/name: drm-service } }
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: edge-cache, namespace: streamvault }
+spec:
+  minAvailable: 60%
+  selector: { matchLabels: { app.kubernetes.io/name: edge-cache } }

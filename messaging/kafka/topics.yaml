@@ -1,0 +1,20 @@
+# Kafka topic declarations — applied via kafka-topics or KafkaTopic CRDs (Strimzi).
+topics:
+  - { name: ingest.asset.received,           partitions: 12,  replication: 3, retention_ms: 604800000 }
+  - { name: media.transcode.requested,       partitions: 64,  replication: 3, retention_ms: 604800000 }
+  - { name: media.transcode.completed,       partitions: 64,  replication: 3, retention_ms: 604800000 }
+  - { name: drm.licence.issued,              partitions: 32,  replication: 3, retention_ms: 2592000000 }
+  - { name: live.stream.started,             partitions: 16,  replication: 3, retention_ms: 1209600000 }
+  - { name: live.stream.ended,               partitions: 16,  replication: 3, retention_ms: 1209600000 }
+  - { name: playback.session.started,        partitions: 128, replication: 3, retention_ms: 604800000 }
+  - { name: playback.session.ended,          partitions: 128, replication: 3, retention_ms: 604800000 }
+  - { name: playback.heartbeat,              partitions: 128, replication: 3, retention_ms: 86400000 }
+  - { name: qoe.event.recorded,              partitions: 128, replication: 3, retention_ms: 604800000 }
+  - { name: ad.break.inserted,               partitions: 32,  replication: 3, retention_ms: 2592000000 }
+  - { name: subscription.plan.changed,       partitions: 8,   replication: 3, retention_ms: 31536000000 }
+  - { name: subscription.payment.succeeded,  partitions: 8,   replication: 3, retention_ms: 31536000000 }
+  - { name: subscription.payment.failed,     partitions: 8,   replication: 3, retention_ms: 31536000000 }
+  - { name: communications.notification.dispatched, partitions: 32, replication: 3, retention_ms: 604800000 }
+  - { name: catalogue.title.published,       partitions: 8,   replication: 3, retention_ms: 31536000000 }
+  - { name: creator.upload.completed,        partitions: 8,   replication: 3, retention_ms: 2592000000 }
+  - { name: identity.user.registered,        partitions: 8,   replication: 3, retention_ms: 31536000000 }

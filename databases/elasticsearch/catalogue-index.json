@@ -1,0 +1,26 @@
+{
+  "settings": {
+    "number_of_shards": 6,
+    "number_of_replicas": 2,
+    "analysis": {
+      "analyzer": {
+        "title_analyzer": { "type": "custom", "tokenizer": "standard", "filter": ["lowercase", "asciifolding", "synonym_streamvault"] }
+      },
+      "filter": {
+        "synonym_streamvault": { "type": "synonym", "synonyms_path": "analysis/streamvault-synonyms.txt" }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "title":      { "type": "text", "analyzer": "title_analyzer", "fields": { "kw": { "type": "keyword" } } },
+      "synopsis":   { "type": "text" },
+      "type":       { "type": "keyword" },
+      "languages":  { "type": "keyword" },
+      "cast":       { "type": "keyword" },
+      "release_date": { "type": "date" },
+      "rating":     { "type": "object" },
+      "popularity": { "type": "double" }
+    }
+  }
+}

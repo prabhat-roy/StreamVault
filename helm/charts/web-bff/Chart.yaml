@@ -1,0 +1,7 @@
+apiVersion: v2
+name: web-bff
+description: StreamVault web BFF — Next.js facing the web player
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords: [streamvault, platform, bff]

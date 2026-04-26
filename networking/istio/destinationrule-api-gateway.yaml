@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1
+kind: DestinationRule
+metadata: { name: api-gateway, namespace: streamvault }
+spec:
+  host: api-gateway
+  subsets:
+    - { name: stable, labels: { version: stable } }
+    - { name: canary, labels: { version: canary } }
+  trafficPolicy:
+    connectionPool:
+      tcp:  { maxConnections: 1024 }
+      http: { http2MaxRequests: 4096, maxRequestsPerConnection: 100 }
+    outlierDetection: { consecutive5xxErrors: 5, interval: 30s, baseEjectionTime: 60s }

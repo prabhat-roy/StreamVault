@@ -1,0 +1,15 @@
+apiVersion: kyverno.io/v2beta1
+kind: ClusterPolicy
+metadata: { name: require-image-signature }
+spec:
+  validationFailureAction: Enforce
+  rules:
+    - name: verify-signature
+      match: { any: [{ resources: { kinds: [Pod] } }] }
+      verifyImages:
+        - imageReferences: ["harbor.streamvault.internal/streamvault/*"]
+          attestors:
+            - entries:
+                - keyless:
+                    issuer: https://accounts.google.com
+                    subject: ci-bot@streamvault.iam.gserviceaccount.com

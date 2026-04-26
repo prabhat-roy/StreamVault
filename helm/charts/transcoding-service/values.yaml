@@ -1,0 +1,16 @@
+image: { repository: harbor.streamvault.internal/streamvault/transcoding-service, tag: latest, pullPolicy: IfNotPresent }
+replicaCount: 6
+service: { type: ClusterIP, port: 50020 }
+resources:
+  requests: { cpu: "4", memory: 16Gi, "nvidia.com/gpu": "1" }
+  limits:   { cpu: "8", memory: 32Gi, "nvidia.com/gpu": "1" }
+env: { LOG_LEVEL: info, PORT: "50020", VMAF_TARGET: "95", FFMPEG_THREADS: "8" }
+serviceAccount: { create: true, name: transcoding-service, annotations: {} }
+podSecurityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+containerSecurityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: false, capabilities: { drop: ["ALL"] } }
+nodeSelector: { node-role.streamvault.io/gpu: "true" }
+tolerations:
+  - key: nvidia.com/gpu
+    operator: Exists
+    effect: NoSchedule
+domain: media

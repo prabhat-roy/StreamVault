@@ -1,0 +1,19 @@
+auth_enabled: false
+server: { http_listen_port: 3100 }
+common:
+  ring: { kvstore: { store: memberlist } }
+  replication_factor: 3
+  path_prefix: /loki
+  storage:
+    s3:
+      endpoint: s3.us-east-1.amazonaws.com
+      bucketnames: streamvault-loki-prod
+schema_config:
+  configs:
+    - from: 2024-01-01
+      store: tsdb
+      object_store: s3
+      schema: v13
+      index: { prefix: index_ period: 24h }
+limits_config:
+  retention_period: 720h

@@ -1,0 +1,20 @@
+route:
+  receiver: pagerduty-default
+  group_by: [alertname, severity]
+  routes:
+    - matchers: [severity="page"]
+      receiver: pagerduty-platform
+    - matchers: [slo="rebuffer"]
+      receiver: pagerduty-qoe
+    - matchers: [slo="live-latency"]
+      receiver: pagerduty-live
+
+receivers:
+  - name: pagerduty-default
+    pagerduty_configs: [{ service_key_file: /etc/secrets/pd-default }]
+  - name: pagerduty-platform
+    pagerduty_configs: [{ service_key_file: /etc/secrets/pd-platform }]
+  - name: pagerduty-qoe
+    pagerduty_configs: [{ service_key_file: /etc/secrets/pd-qoe }]
+  - name: pagerduty-live
+    pagerduty_configs: [{ service_key_file: /etc/secrets/pd-live }]

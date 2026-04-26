@@ -1,0 +1,9 @@
+image: { repository: harbor.streamvault.internal/streamvault/ingest-service, tag: latest, pullPolicy: IfNotPresent }
+replicaCount: 4
+service: { type: ClusterIP, port: 50010 }
+resources: { requests: { cpu: 500m, memory: 1Gi }, limits: { cpu: 4000m, memory: 8Gi } }
+env: { LOG_LEVEL: info, PORT: "50010", S3_BUCKET: streamvault-mezzanine }
+serviceAccount: { create: true, name: ingest-service, annotations: {} }
+podSecurityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+containerSecurityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }
+domain: ingest

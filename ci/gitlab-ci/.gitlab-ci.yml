@@ -1,0 +1,46 @@
+stages: [build, scan, sign, push]
+variables:
+  REGISTRY: harbor.streamvault.internal
+  COSIGN_EXPERIMENTAL: '1'
+
+.kaniko_build:
+  stage: build
+  image: gcr.io/kaniko-project/executor:debug
+  script:
+    - >-
+      /kaniko/executor
+      --context "$CI_PROJECT_DIR/$SERVICE_DIR"
+      --dockerfile "$CI_PROJECT_DIR/$SERVICE_DIR/Dockerfile"
+      --destination "${REGISTRY}/streamvault/${SERVICE_NAME}:${CI_COMMIT_SHA}"
+      --cache=true
+
+.trivy_scan:
+  stage: scan
+  image: aquasec/trivy:latest
+  script:
+    - trivy image --exit-code 1 --severity CRITICAL,HIGH "${REGISTRY}/streamvault/${SERVICE_NAME}:${CI_COMMIT_SHA}"
+
+.syft_sbom:
+  stage: scan
+  image: anchore/syft:latest
+  script:
+    - syft "${REGISTRY}/streamvault/${SERVICE_NAME}:${CI_COMMIT_SHA}" -o cyclonedx-json > sbom.json
+  artifacts: { paths: [sbom.json] }
+
+.cosign_sign:
+  stage: sign
+  image: gcr.io/projectsigstore/cosign:latest
+  script:
+    - cosign sign --yes "${REGISTRY}/streamvault/${SERVICE_NAME}:${CI_COMMIT_SHA}"
+
+drm-service:
+  variables: { SERVICE_DIR: src/drm/drm-service, SERVICE_NAME: drm-service }
+  extends: [.kaniko_build, .trivy_scan, .syft_sbom, .cosign_sign]
+
+playback-orchestrator:
+  variables: { SERVICE_DIR: src/playback/playback-orchestrator, SERVICE_NAME: playback-orchestrator }
+  extends: [.kaniko_build, .trivy_scan, .syft_sbom, .cosign_sign]
+
+stream-packager:
+  variables: { SERVICE_DIR: src/live/stream-packager, SERVICE_NAME: stream-packager }
+  extends: [.kaniko_build, .trivy_scan, .syft_sbom, .cosign_sign]

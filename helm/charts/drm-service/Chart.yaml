@@ -1,0 +1,6 @@
+apiVersion: v2
+name: drm-service
+description: StreamVault DRM service — multi-DRM key orchestration (Widevine/FairPlay/PlayReady)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

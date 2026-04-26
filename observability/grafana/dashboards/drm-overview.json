@@ -1,0 +1,11 @@
+{
+  "title": "StreamVault — DRM Overview",
+  "uid": "streamvault-drm",
+  "schemaVersion": 39,
+  "panels": [
+    { "title": "Licence req/s",         "type": "timeseries", "targets": [{ "expr": "sum(rate(drm_licence_request_total[1m])) by (drm_system)" }] },
+    { "title": "Licence failure %",     "type": "stat",       "targets": [{ "expr": "sum(rate(drm_licence_failure_total[5m])) / sum(rate(drm_licence_request_total[5m]))" }] },
+    { "title": "HSM operations/sec",    "type": "timeseries", "targets": [{ "expr": "sum(rate(vault_hsm_operations_total[1m])) by (operation)" }] },
+    { "title": "Forensic watermark hits", "type": "timeseries", "targets": [{ "expr": "sum(rate(forensic_watermark_match_total[5m])) by (variant)" }] }
+  ]
+}

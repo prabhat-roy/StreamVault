@@ -1,0 +1,7 @@
+apiVersion: v2
+name: api-gateway
+description: StreamVault API gateway — OAuth2, rate limit, DRM token issue, geo routing
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords: [streamvault, platform, gateway]

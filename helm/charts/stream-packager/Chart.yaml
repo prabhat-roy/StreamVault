@@ -1,0 +1,6 @@
+apiVersion: v2
+name: stream-packager
+description: StreamVault live stream packager — CMAF/HLS/DASH packaging with sub-3s glass-to-glass
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

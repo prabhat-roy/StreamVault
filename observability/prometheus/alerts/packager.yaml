@@ -1,0 +1,14 @@
+groups:
+  - name: streamvault-packager
+    rules:
+      - alert: LiveLatencyAbove3s
+        expr: histogram_quantile(0.95, sum(rate(streamvault_live_glass_to_glass_seconds_bucket[1m])) by (le)) > 3
+        for: 2m
+        labels: { severity: critical, slo: live-latency }
+        annotations: { summary: "LL-HLS glass-to-glass exceeds 3s SLO" }
+
+      - alert: PackagerCPUSaturated
+        expr: sum(rate(container_cpu_usage_seconds_total{pod=~"stream-packager-.*"}[5m])) by (pod) > 5
+        for: 5m
+        labels: { severity: warning }
+        annotations: { summary: "stream-packager pod near CPU limit" }

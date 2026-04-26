@@ -1,0 +1,13 @@
+- rule: DRM key file accessed by non-DRM process
+  desc: Detect any process other than vault-agent / drm-service reading DRM key files
+  condition: open_read and fd.name startswith /vault/secrets/drm and not (proc.name in (vault, drm-service))
+  output: "DRM key read by unexpected process (pid=%proc.pid cmd=%proc.cmdline file=%fd.name)"
+  priority: CRITICAL
+  tags: [drm, security]
+
+- rule: Outbound to non-allowlisted host from DRM pod
+  desc: DRM pods may only talk to Vault and Kafka
+  condition: outbound and k8s.ns.name=streamvault-drm and not (fd.sip in (vault.streamvault.internal, kafka.messaging))
+  output: "DRM pod egress to non-allowlisted host (pod=%k8s.pod.name dest=%fd.sip)"
+  priority: CRITICAL
+  tags: [drm, network]

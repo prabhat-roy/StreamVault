@@ -1,0 +1,16 @@
+consumers:
+  - stream: WATCH_PARTY
+    name: watch-party-sync
+    deliver_policy: new
+    ack_policy: explicit
+    max_deliver: 5
+
+  - stream: LIVE_SIGNAL
+    name: live-control-room
+    deliver_policy: last_per_subject
+    ack_policy: none
+
+  - stream: PLAYER_HEARTBEAT
+    name: presence-aggregator
+    deliver_policy: all
+    ack_policy: none

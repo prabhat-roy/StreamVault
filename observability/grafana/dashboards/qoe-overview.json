@@ -1,0 +1,12 @@
+{
+  "title": "StreamVault — QoE Overview",
+  "uid": "streamvault-qoe",
+  "schemaVersion": 39,
+  "panels": [
+    { "title": "P95 join time (s)", "type": "stat", "targets": [{ "expr": "histogram_quantile(0.95, sum(rate(playback_join_time_seconds_bucket[5m])) by (le))" }] },
+    { "title": "Rebuffer ratio",     "type": "stat", "targets": [{ "expr": "sum(rate(playback_rebuffer_seconds_total[5m])) / sum(rate(playback_play_seconds_total[5m]))" }] },
+    { "title": "Concurrent streams", "type": "timeseries", "targets": [{ "expr": "sum(streamvault_concurrent_streams_total) by (cdn_region)" }] },
+    { "title": "CDN hit rate",       "type": "timeseries", "targets": [{ "expr": "avg(streamvault_cdn_hit_ratio) by (pop)" }] },
+    { "title": "Live glass-to-glass P95 (s)", "type": "timeseries", "targets": [{ "expr": "histogram_quantile(0.95, sum(rate(streamvault_live_glass_to_glass_seconds_bucket[1m])) by (le))" }] }
+  ]
+}

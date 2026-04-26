@@ -1,0 +1,21 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledJob
+metadata: { name: transcoding-service, namespace: streamvault }
+spec:
+  jobTargetRef:
+    template:
+      spec:
+        containers:
+          - name: ffmpeg
+            image: harbor.streamvault.internal/streamvault/transcoding-service:latest
+            resources: { requests: { "nvidia.com/gpu": "1" } }
+        restartPolicy: Never
+  pollingInterval: 30
+  maxReplicaCount: 200
+  triggers:
+    - type: kafka
+      metadata:
+        bootstrapServers: kafka.messaging:9092
+        consumerGroup: transcoding-service
+        topic: media.transcode.requested
+        lagThreshold: "10"

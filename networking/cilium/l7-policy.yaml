@@ -1,0 +1,14 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata: { name: drm-l7, namespace: streamvault-drm }
+spec:
+  endpointSelector: { matchLabels: { app.kubernetes.io/name: drm-service } }
+  egress:
+    - toEndpoints: [{ matchLabels: { app.kubernetes.io/name: vault } }]
+      toPorts:
+        - ports: [{ port: "8200", protocol: TCP }]
+          rules:
+            http:
+              - { method: "POST", path: "/v1/transit/encrypt/drm-master" }
+              - { method: "POST", path: "/v1/transit/decrypt/drm-master" }
+              - { method: "POST", path: "/v1/transit/sign/licence-signing/.*" }

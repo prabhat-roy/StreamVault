@@ -1,0 +1,13 @@
+image: { repository: harbor.streamvault.internal/streamvault/drm-service, tag: latest, pullPolicy: IfNotPresent }
+replicaCount: 4
+service: { type: ClusterIP, port: 50030 }
+resources: { requests: { cpu: 500m, memory: 512Mi }, limits: { cpu: 2000m, memory: 2Gi } }
+env: { LOG_LEVEL: info, PORT: "50030", VAULT_ADDR: "https://vault.streamvault.internal", VAULT_KV_PATH: "drm/keys" }
+serviceAccount: { create: true, name: drm-service, annotations: {} }
+podSecurityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+containerSecurityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }
+podAnnotations:
+  vault.hashicorp.com/agent-inject: "true"
+  vault.hashicorp.com/role: drm-service
+  vault.hashicorp.com/agent-inject-secret-key: drm/keys/current
+domain: drm

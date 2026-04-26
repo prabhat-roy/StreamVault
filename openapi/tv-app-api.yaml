@@ -1,0 +1,36 @@
+openapi: 3.1.0
+info:
+  title: StreamVault — TV App API
+  version: 0.1.0
+  description: Endpoints exposed by tv-bff to the Flutter TV app (large-screen UX)
+servers:
+  - url: https://api.streamvault.io
+security:
+  - bearerAuth: []
+paths:
+  /v1/tv/home:
+    get:
+      summary: TV-optimised home rows (10ft layout, fewer cards per row)
+      responses: { '200': { description: ok } }
+
+  /v1/tv/playback/session:
+    post:
+      summary: Create a TV playback session (HDCP enforcement enabled by default)
+      requestBody: { required: true, content: { application/json: { schema: { type: object, required: [title_id, hdcp_level], properties: { title_id: { type: string }, hdcp_level: { type: integer, enum: [1, 2] } } } } } }
+      responses: { '200': { description: ok } }
+
+  /v1/tv/remote/pair:
+    post:
+      summary: Pair a phone remote to a TV device (QR-code flow)
+      requestBody: { required: true, content: { application/json: { schema: { type: object, properties: { pair_code: { type: string, minLength: 6, maxLength: 8 } } } } } }
+      responses: { '204': { description: paired } }
+
+  /v1/tv/voice-search:
+    post:
+      summary: Voice-search audio upload (Opus 16kHz)
+      requestBody: { required: true, content: { audio/opus: { schema: { type: string, format: binary } } } }
+      responses: { '200': { description: ok, content: { application/json: { schema: { type: object, properties: { transcript: { type: string }, results: { type: array } } } } } } }
+
+components:
+  securitySchemes:
+    bearerAuth: { type: http, scheme: bearer, bearerFormat: JWT }

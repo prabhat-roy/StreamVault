@@ -1,0 +1,9 @@
+serviceAccount:
+  annotations:
+    azure.workload.identity/client-id: 00000000-0000-0000-0000-000000000000
+ingress:
+  className: azure-application-gateway
+  annotations:
+    appgw.ingress.kubernetes.io/use-private-ip: "false"
+storageClass: managed-csi
+secretsCSI: azure-keyvault

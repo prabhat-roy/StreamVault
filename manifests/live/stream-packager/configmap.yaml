@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: { name: stream-packager, namespace: streamvault }
+data:
+  LOG_LEVEL: info
+  PORT: "50040"
+  LL_HLS_TARGET_LATENCY_MS: "3000"
+  CMAF_CHUNK_DURATION_MS: "200"
+  SCTE35_PROCESSING: "enabled"

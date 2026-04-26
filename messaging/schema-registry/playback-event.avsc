@@ -1,0 +1,20 @@
+{
+  "type": "record",
+  "name": "PlaybackEvent",
+  "namespace": "io.streamvault.playback",
+  "fields": [
+    { "name": "session_id",        "type": "string" },
+    { "name": "user_id",           "type": "string" },
+    { "name": "profile_id",        "type": ["null", "string"], "default": null },
+    { "name": "title_id",          "type": "string" },
+    { "name": "ts_ms",             "type": "long",    "logicalType": "timestamp-millis" },
+    { "name": "event_type",        "type": { "type": "enum", "name": "EventType", "symbols": ["START","HEARTBEAT","PAUSE","RESUME","SEEK","BITRATE_SWITCH","END","ERROR"] } },
+    { "name": "position_ms",       "type": "long" },
+    { "name": "bitrate_kbps",      "type": ["null", "int"], "default": null },
+    { "name": "rebuffer_ms",       "type": ["null", "int"], "default": null },
+    { "name": "join_time_ms",      "type": ["null", "int"], "default": null },
+    { "name": "device_type",       "type": "string" },
+    { "name": "drm_system",        "type": ["null", { "type": "enum", "name": "DrmSystem", "symbols": ["WIDEVINE","FAIRPLAY","PLAYREADY","NONE"] }], "default": null },
+    { "name": "cdn_pop",           "type": ["null", "string"], "default": null }
+  ]
+}

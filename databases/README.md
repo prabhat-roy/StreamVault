@@ -1,6 +1,14 @@
 # Databases — StreamVault
 
-Database schemas, migrations, indexes, key patterns — PostgreSQL, MongoDB, Redis, Cassandra, ClickHouse, etc.
+```
+databases/
+├── postgres/        Subscription, billing, user data — Flyway migrations
+├── mongodb/         Catalogue (rich nested metadata, posters, languages)
+├── redis/           Session, recently watched, leaderboards, rate limit
+├── cassandra/       Playback events + view history (billions of rows)
+├── elasticsearch/   Catalogue full-text search
+├── clickhouse/      QoE / engagement / ad analytics OLAP
+└── weaviate/        Vector DB for two-tower recommendation embeddings
+```
 
-> Skeleton placeholder. Content will be added as the project takes shape.
-> See [../README.md](../README.md) for the StreamVault project overview.
+> DRM keys live ONLY in Vault HSM. They are NEVER stored in any of the databases above.

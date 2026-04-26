@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stream-packager
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: stream-packager, app.kubernetes.io/part-of: streamvault, streamvault.io/domain: live }
+spec:
+  replicas: 6
+  selector: { matchLabels: { app.kubernetes.io/name: stream-packager } }
+  template:
+    metadata: { labels: { app.kubernetes.io/name: stream-packager, streamvault.io/domain: live } }
+    spec:
+      serviceAccountName: stream-packager
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: stream-packager
+          image: harbor.streamvault.internal/streamvault/stream-packager:latest
+          ports: [{ containerPort: 50040, name: http }]
+          envFrom: [{ configMapRef: { name: stream-packager } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50040 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50040 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: "2", memory: 4Gi }
+            limits:   { cpu: "6", memory: 12Gi }
+          securityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }

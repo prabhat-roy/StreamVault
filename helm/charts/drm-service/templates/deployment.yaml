@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: {{ include "svc.name" . }}, labels: {{- include "svc.labels" . | nindent 4 }} }
+spec:
+  # Blue-green strategy is set externally (Argo Rollouts) for DRM-critical services
+  replicas: {{ .Values.replicaCount }}
+  selector: { matchLabels: { app.kubernetes.io/name: {{ include "svc.name" . }} } }
+  template:
+    metadata:
+      labels: {{- include "svc.labels" . | nindent 8 }}
+      annotations: {{- toYaml .Values.podAnnotations | nindent 8 }}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      securityContext: {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ include "svc.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports: [{ containerPort: {{ .Values.service.port }}, name: http }]
+          env:
+            {{- range $k, $v := .Values.env }}
+            - { name: {{ $k }}, value: "{{ $v }}" }
+            {{- end }}
+          livenessProbe:  { httpGet: { path: /healthz, port: {{ .Values.service.port }} } }
+          readinessProbe: { httpGet: { path: /healthz, port: {{ .Values.service.port }} } }
+          resources: {{- toYaml .Values.resources | nindent 12 }}
+          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}

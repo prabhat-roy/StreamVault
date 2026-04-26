@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: streamvault
+  namespace: argocd
+spec:
+  description: StreamVault platform applications
+  sourceRepos:
+    - https://github.com/prabhat-roy/StreamVault.git
+  destinations:
+    - { namespace: streamvault, server: https://kubernetes.default.svc }
+    - { namespace: streamvault-*, server: https://kubernetes.default.svc }
+  clusterResourceWhitelist:
+    - { group: '*', kind: '*' }
+  namespaceResourceWhitelist:
+    - { group: '*', kind: '*' }

@@ -1,0 +1,10 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata: { name: stream-packager, namespace: streamvault }
+spec:
+  scaleTargetRef: { apiVersion: apps/v1, kind: Deployment, name: stream-packager }
+  minReplicas: 6
+  maxReplicas: 200
+  metrics:
+    - type: Resource
+      resource: { name: cpu, target: { type: Utilization, averageUtilization: 65 } }

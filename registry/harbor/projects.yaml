@@ -1,0 +1,14 @@
+projects:
+  - name: streamvault
+    public: false
+    cve_allowlist: []
+    quota: { storage: 5Tb }
+    enable_content_trust: true
+    auto_scan: true
+    severity: high
+    prevent_vul: true
+
+  - name: streamvault-ci
+    public: false
+    quota: { storage: 1Tb }
+    auto_scan: true

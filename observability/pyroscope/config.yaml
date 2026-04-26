@@ -1,0 +1,11 @@
+server: { http_listen_port: 4040 }
+storage:
+  backend: s3
+  s3: { endpoint: s3.us-east-1.amazonaws.com, bucket_name: streamvault-pyroscope-prod }
+scrape_configs:
+  - job_name: transcoding-service
+    scrape_interval: 30s
+    static_configs: [{ targets: ["transcoding-service.streamvault:4040"] }]
+  - job_name: stream-packager
+    scrape_interval: 30s
+    static_configs: [{ targets: ["stream-packager.streamvault:4040"] }]

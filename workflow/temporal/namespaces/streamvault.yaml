@@ -1,0 +1,7 @@
+apiVersion: temporal.io/v1beta1
+kind: TemporalNamespace
+metadata: { name: streamvault, namespace: temporal }
+spec:
+  retentionPeriod: 30d
+  workflowExecutionRetentionTtl: 720h
+  description: StreamVault long-running media + billing workflows

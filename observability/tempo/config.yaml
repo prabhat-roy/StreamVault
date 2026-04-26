@@ -1,0 +1,12 @@
+server: { http_listen_port: 3200 }
+distributor:
+  receivers:
+    otlp: { protocols: { grpc: {}, http: {} } }
+storage:
+  trace:
+    backend: s3
+    s3:
+      endpoint: s3.us-east-1.amazonaws.com
+      bucket: streamvault-tempo-prod
+metrics_generator:
+  processors: [service-graphs, span-metrics]

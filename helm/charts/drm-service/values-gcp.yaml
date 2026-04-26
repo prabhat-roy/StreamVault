@@ -1,0 +1,3 @@
+serviceAccount: { annotations: { iam.gke.io/gcp-service-account: streamvault-drm@streamvault.iam.gserviceaccount.com } }
+storageClass: pd-balanced
+env: { KMS_KEY: "projects/streamvault/locations/global/keyRings/drm/cryptoKeys/master" }

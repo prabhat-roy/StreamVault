@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommendation-service
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: recommendation-service, app.kubernetes.io/part-of: streamvault, streamvault.io/domain: personalisation }
+spec:
+  replicas: 4
+  selector: { matchLabels: { app.kubernetes.io/name: recommendation-service } }
+  template:
+    metadata: { labels: { app.kubernetes.io/name: recommendation-service, streamvault.io/domain: personalisation } }
+    spec:
+      serviceAccountName: recommendation-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: recommendation-service
+          image: harbor.streamvault.internal/streamvault/recommendation-service:latest
+          ports: [{ containerPort: 50070, name: http }]
+          envFrom: [{ configMapRef: { name: recommendation-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50070 } }
+          readinessProbe: { httpGet: { path: /healthz, port: 50070 } }
+          resources: { requests: { cpu: 1, memory: 2Gi }, limits: { cpu: 4, memory: 8Gi } }
+          securityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }

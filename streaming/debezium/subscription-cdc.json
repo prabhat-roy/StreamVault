@@ -1,0 +1,17 @@
+{
+  "name": "subscription-cdc",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "tasks.max": "1",
+    "database.hostname": "postgres-subscription.databases",
+    "database.port": "5432",
+    "database.user": "debezium",
+    "database.password": "${file:/run/secrets/debezium-pw:pw}",
+    "database.dbname": "subscription",
+    "topic.prefix": "subscription",
+    "schema.include.list": "public",
+    "table.include.list": "public.subscription,public.plan",
+    "snapshot.mode": "initial",
+    "publication.autocreate.mode": "filtered"
+  }
+}

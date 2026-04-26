@@ -1,0 +1,3 @@
+serviceAccount: { annotations: { iam.gke.io/gcp-service-account: streamvault-ingest@streamvault.iam.gserviceaccount.com } }
+storageClass: pd-balanced
+env: { GCS_BUCKET: streamvault-mezzanine }

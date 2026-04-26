@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata: { name: drm-service, namespace: streamvault }
+spec:
+  replicas: 4
+  # DRM is blue-green: never run two key-server versions accepting traffic at once.
+  strategy:
+    blueGreen:
+      activeService: drm-service-active
+      previewService: drm-service-preview
+      autoPromotionEnabled: false
+      prePromotionAnalysis:
+        templates: [{ templateName: streamvault-canary-analysis }]
+        args: [{ name: service-name, value: drm-service }]
+  selector: { matchLabels: { app.kubernetes.io/name: drm-service } }
+  template:
+    metadata: { labels: { app.kubernetes.io/name: drm-service } }
+    spec:
+      containers:
+        - name: drm-service
+          image: harbor.streamvault.internal/streamvault/drm-service:latest
+          ports: [{ containerPort: 50030 }]

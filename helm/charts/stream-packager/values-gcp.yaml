@@ -1,0 +1,2 @@
+serviceAccount: { annotations: { iam.gke.io/gcp-service-account: streamvault-packager@streamvault.iam.gserviceaccount.com } }
+storageClass: pd-balanced

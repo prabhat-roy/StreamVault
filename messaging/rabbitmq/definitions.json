@@ -1,0 +1,19 @@
+{
+  "vhosts": [{ "name": "/streamvault" }],
+  "queues": [
+    { "name": "notifications.email",  "vhost": "/streamvault", "durable": true, "arguments": { "x-dead-letter-exchange": "dlx" } },
+    { "name": "notifications.push",   "vhost": "/streamvault", "durable": true, "arguments": { "x-dead-letter-exchange": "dlx" } },
+    { "name": "notifications.sms",    "vhost": "/streamvault", "durable": true, "arguments": { "x-dead-letter-exchange": "dlx" } },
+    { "name": "notifications.in-app", "vhost": "/streamvault", "durable": true }
+  ],
+  "exchanges": [
+    { "name": "notifications", "vhost": "/streamvault", "type": "topic", "durable": true },
+    { "name": "dlx",           "vhost": "/streamvault", "type": "fanout", "durable": true }
+  ],
+  "bindings": [
+    { "source": "notifications", "destination": "notifications.email",  "destination_type": "queue", "routing_key": "email.#" },
+    { "source": "notifications", "destination": "notifications.push",   "destination_type": "queue", "routing_key": "push.#" },
+    { "source": "notifications", "destination": "notifications.sms",    "destination_type": "queue", "routing_key": "sms.#" },
+    { "source": "notifications", "destination": "notifications.in-app", "destination_type": "queue", "routing_key": "in-app.#" }
+  ]
+}

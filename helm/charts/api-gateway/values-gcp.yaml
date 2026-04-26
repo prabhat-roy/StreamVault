@@ -1,0 +1,9 @@
+serviceAccount:
+  annotations:
+    iam.gke.io/gcp-service-account: streamvault-api-gateway@streamvault.iam.gserviceaccount.com
+ingress:
+  className: gce
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: streamvault-api-gateway
+storageClass: pd-balanced
+secretsCSI: gcp-secrets

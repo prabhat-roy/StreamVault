@@ -1,0 +1,30 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata: { name: oauth2-introspect, namespace: streamvault }
+plugin: jwt
+config:
+  uri_param_names: ["jwt"]
+  cookie_names: []
+  claims_to_verify: ["exp"]
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata: { name: rate-limit-by-ip, namespace: streamvault }
+plugin: rate-limiting
+config:
+  minute: 200
+  policy: redis
+  redis_host: redis-master.databases
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata: { name: licence-claim-verify, namespace: streamvault }
+plugin: pre-function
+config:
+  access:
+    - |
+      local jwt = require "kong.plugins.jwt.jwt_parser"
+      local token = kong.request.get_header("X-Playback-Token")
+      local parsed, err = jwt:new(token)
+      if err then return kong.response.exit(401, { message = "invalid playback token" }) end
+      if parsed.claims.exp < os.time() then return kong.response.exit(401, { message = "playback token expired" }) end

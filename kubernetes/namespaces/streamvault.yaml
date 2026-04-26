@@ -1,0 +1,74 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: streamvault
+  labels: { streamvault.io/domain: root, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-platform,        labels: { streamvault.io/domain: platform,        pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-ingest,          labels: { streamvault.io/domain: ingest,          pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-media,           labels: { streamvault.io/domain: media,           pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-drm,             labels: { streamvault.io/domain: drm,             pod-security.kubernetes.io/enforce: restricted, streamvault.io/sensitive: "true" } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-cdn,             labels: { streamvault.io/domain: cdn,             pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-live,            labels: { streamvault.io/domain: live,            pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-catalogue,       labels: { streamvault.io/domain: catalogue,       pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-playback,        labels: { streamvault.io/domain: playback,        pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-subscription,    labels: { streamvault.io/domain: subscription,    pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-creator,         labels: { streamvault.io/domain: creator,         pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-ad,              labels: { streamvault.io/domain: ad,              pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-personalisation, labels: { streamvault.io/domain: personalisation, pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-social,          labels: { streamvault.io/domain: social,          pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-downloads,       labels: { streamvault.io/domain: downloads,       pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-analytics,       labels: { streamvault.io/domain: analytics,       pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-communications,  labels: { streamvault.io/domain: communications,  pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: streamvault-identity,        labels: { streamvault.io/domain: identity,        pod-security.kubernetes.io/enforce: restricted } }

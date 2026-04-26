@@ -1,0 +1,9 @@
+image: { repository: harbor.streamvault.internal/streamvault/playback-orchestrator, tag: latest, pullPolicy: IfNotPresent }
+replicaCount: 6
+service: { type: ClusterIP, port: 50060 }
+resources: { requests: { cpu: 500m, memory: 768Mi }, limits: { cpu: 3000m, memory: 3Gi } }
+env: { LOG_LEVEL: info, PORT: "50060", JOIN_TIME_SLO_MS: "2000", REBUFFER_SLO_PCT: "0.5" }
+serviceAccount: { create: true, name: playback-orchestrator, annotations: {} }
+podSecurityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+containerSecurityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }
+domain: playback

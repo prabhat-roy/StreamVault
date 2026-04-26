@@ -1,6 +1,15 @@
 # Kubernetes — StreamVault
 
-Raw K8s manifests — namespaces, RBAC, NetworkPolicies, ResourceQuotas, PDBs, KEDA, Velero.
+Raw cluster-scoped manifests — namespaces, RBAC, NetworkPolicies, ResourceQuotas,
+PDBs, KEDA scalers (Kafka lag + concurrent stream count), Velero backup schedules.
 
-> Skeleton placeholder. Content will be added as the project takes shape.
-> See [../README.md](../README.md) for the StreamVault project overview.
+```
+kubernetes/
+├── namespaces/                One namespace per business domain
+├── rbac/                      ClusterRoles for service-reader, platform-admin
+├── network-policies/          default-deny-all + allow-istio-mesh + DRM service egress lock
+├── resource-quotas/           Quota + LimitRange per namespace
+├── pod-disruption-budgets/    PDBs for live + DRM + edge cache
+├── keda/                      Kafka-lag scaler for notifications, concurrent-stream scaler for packager
+└── velero/                    Daily snapshot schedule + DR restore plan
+```

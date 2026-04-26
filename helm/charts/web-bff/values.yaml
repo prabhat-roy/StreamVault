@@ -1,0 +1,10 @@
+image: { repository: harbor.streamvault.internal/streamvault/web-bff, tag: latest, pullPolicy: IfNotPresent }
+replicaCount: 3
+service: { type: ClusterIP, port: 50001 }
+resources:
+  requests: { cpu: 200m, memory: 256Mi }
+  limits:   { cpu: 1500m, memory: 768Mi }
+env: { LOG_LEVEL: info, PORT: "50001" }
+serviceAccount: { create: true, name: web-bff, annotations: {} }
+podSecurityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+containerSecurityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }

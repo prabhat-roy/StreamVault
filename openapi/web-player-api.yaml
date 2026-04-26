@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: StreamVault — Web Player API
+  version: 0.1.0
+  description: Endpoints exposed by web-bff to the Next.js web player
+servers:
+  - url: https://api.streamvault.io
+security:
+  - bearerAuth: []
+paths:
+  /v1/catalogue/home:
+    get:
+      summary: Personalised home page rows
+      responses:
+        '200': { description: ok, content: { application/json: { schema: { $ref: '#/components/schemas/HomePage' } } } }
+  /v1/catalogue/title/{id}:
+    get:
+      parameters: [{ in: path, name: id, required: true, schema: { type: string } }]
+      responses:
+        '200': { description: ok, content: { application/json: { schema: { $ref: '#/components/schemas/Title' } } } }
+        '404': { description: not found }
+  /v1/search:
+    get:
+      parameters:
+        - { in: query, name: q,    required: true,  schema: { type: string } }
+        - { in: query, name: lang, required: false, schema: { type: string } }
+      responses:
+        '200': { description: ok, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Title' } } } } }
+  /v1/playback/session:
+    post:
+      summary: Create a playback session and receive a short-lived JWT playback token
+      requestBody:
+        required: true
+        content: { application/json: { schema: { type: object, required: [title_id], properties: { title_id: { type: string } } } } }
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  session_id:      { type: string, format: uuid }
+                  playback_token:  { type: string, description: "JWT, 60s TTL" }
+                  manifest_url:    { type: string, format: uri }
+                  drm:             { type: object, properties: { widevine_licence_url: { type: string }, fairplay_licence_url: { type: string }, playready_licence_url: { type: string } } }
+  /v1/recommendations:
+    get:
+      responses:
+        '200': { description: ok, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Title' } } } } }
+  /v1/watchlist:
+    get:
+      responses: { '200': { description: ok } }
+    post:
+      requestBody: { required: true, content: { application/json: { schema: { type: object, properties: { title_id: { type: string } } } } } }
+      responses: { '204': { description: added } }
+components:
+  securitySchemes:
+    bearerAuth: { type: http, scheme: bearer, bearerFormat: JWT }
+  schemas:
+    HomePage:
+      type: object
+      properties:
+        rows:
+          type: array
+          items: { type: object, properties: { title: { type: string }, items: { type: array, items: { $ref: '#/components/schemas/Title' } } } }
+    Title:
+      type: object
+      properties:
+        id:           { type: string }
+        title:        { type: string }
+        synopsis:     { type: string }
+        type:         { type: string, enum: [movie, episode, series, live, short] }
+        duration_ms:  { type: integer, format: int64 }
+        languages:    { type: array, items: { type: string } }
+        rating:       { type: object, additionalProperties: { type: string } }
+        poster_url:   { type: string, format: uri }

@@ -1,0 +1,21 @@
+slos:
+  - name: playback-availability
+    objective: 0.9999
+    indicator: sli_playback_success_ratio
+    window: 30d
+    error_budget_burn_rate_alerts: [{ rate: 14.4, window: 1h }, { rate: 6, window: 6h }]
+
+  - name: playback-join-time
+    objective: 0.95
+    indicator: histogram_quantile(0.95, playback_join_time_seconds_bucket) <= 2
+    window: 30d
+
+  - name: live-glass-to-glass
+    objective: 0.95
+    indicator: histogram_quantile(0.95, streamvault_live_glass_to_glass_seconds_bucket) <= 3
+    window: 7d
+
+  - name: rebuffer-ratio
+    objective: 0.995
+    indicator: 1 - (rebuffer_seconds / play_seconds)
+    window: 30d

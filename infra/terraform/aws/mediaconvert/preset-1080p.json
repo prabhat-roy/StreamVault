@@ -1,0 +1,16 @@
+{
+  "VideoDescription": {
+    "CodecSettings": {
+      "Codec": "H_264",
+      "H264Settings": {
+        "RateControlMode": "QVBR",
+        "QvbrSettings": { "QvbrQualityLevel": 9 },
+        "MaxBitrate": 6000000
+      }
+    },
+    "Width": 1920,
+    "Height": 1080
+  },
+  "AudioDescriptions": [{ "CodecSettings": { "Codec": "AAC", "AacSettings": { "Bitrate": 128000, "SampleRate": 48000 } } }],
+  "ContainerSettings": { "Container": "CMFC" }
+}

@@ -1,0 +1,3 @@
+serviceAccount: { annotations: { iam.gke.io/gcp-service-account: streamvault-web-bff@streamvault.iam.gserviceaccount.com } }
+ingress: { className: gce }
+storageClass: pd-balanced

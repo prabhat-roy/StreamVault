@@ -1,0 +1,20 @@
+groups:
+  - name: streamvault-qoe
+    rules:
+      - alert: HighRebufferRatio
+        expr: |
+          sum(rate(playback_rebuffer_seconds_total[5m]))
+          /
+          sum(rate(playback_play_seconds_total[5m]))
+          > 0.005
+        for: 5m
+        labels: { severity: critical, slo: rebuffer }
+        annotations:
+          summary: "Rebuffer ratio above 0.5% SLO"
+          runbook: https://runbooks.streamvault.io/rebuffer
+
+      - alert: HighJoinTimeP95
+        expr: histogram_quantile(0.95, sum(rate(playback_join_time_seconds_bucket[5m])) by (le)) > 2
+        for: 10m
+        labels: { severity: warning, slo: join-time }
+        annotations: { summary: "P95 join time above 2s SLO" }

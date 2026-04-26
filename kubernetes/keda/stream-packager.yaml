@@ -1,0 +1,13 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata: { name: stream-packager, namespace: streamvault }
+spec:
+  scaleTargetRef: { name: stream-packager }
+  minReplicaCount: 6
+  maxReplicaCount: 200
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: http://prometheus.observability:9090
+        threshold: "5000"
+        query: sum(streamvault_concurrent_streams_total{service="stream-packager"})

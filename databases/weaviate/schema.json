@@ -1,0 +1,29 @@
+{
+  "classes": [
+    {
+      "class": "Title",
+      "description": "Title embedding from two-tower content tower",
+      "vectorizer": "none",
+      "vectorIndexType": "hnsw",
+      "vectorIndexConfig": { "distance": "cosine", "ef": 200, "efConstruction": 256 },
+      "properties": [
+        { "name": "title_id",   "dataType": ["text"] },
+        { "name": "title",      "dataType": ["text"] },
+        { "name": "genres",     "dataType": ["text[]"] },
+        { "name": "languages",  "dataType": ["text[]"] },
+        { "name": "popularity", "dataType": ["number"] }
+      ]
+    },
+    {
+      "class": "User",
+      "description": "User embedding from two-tower user tower",
+      "vectorizer": "none",
+      "vectorIndexType": "hnsw",
+      "vectorIndexConfig": { "distance": "cosine" },
+      "properties": [
+        { "name": "user_id",    "dataType": ["text"] },
+        { "name": "country",    "dataType": ["text"] }
+      ]
+    }
+  ]
+}

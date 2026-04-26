@@ -1,0 +1,14 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata: { name: notification-orchestrator, namespace: streamvault }
+spec:
+  scaleTargetRef: { name: notification-orchestrator }
+  minReplicaCount: 2
+  maxReplicaCount: 30
+  triggers:
+    - type: kafka
+      metadata:
+        bootstrapServers: kafka.messaging:9092
+        consumerGroup: notification-orchestrator
+        topic: communications.notification.dispatched
+        lagThreshold: "100"

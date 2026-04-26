@@ -1,0 +1,6 @@
+apiVersion: v2
+name: ingest-service
+description: StreamVault content ingest — onboard mezzanine assets from studios
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

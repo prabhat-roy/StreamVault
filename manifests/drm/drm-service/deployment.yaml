@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drm-service
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: drm-service, app.kubernetes.io/part-of: streamvault, streamvault.io/domain: drm }
+spec:
+  replicas: 4
+  selector: { matchLabels: { app.kubernetes.io/name: drm-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: drm-service, streamvault.io/domain: drm }
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: drm-service
+        vault.hashicorp.com/agent-inject-secret-key: drm/keys/current
+    spec:
+      serviceAccountName: drm-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: drm-service
+          image: harbor.streamvault.internal/streamvault/drm-service:latest
+          ports: [{ containerPort: 50030, name: http }]
+          envFrom: [{ configMapRef: { name: drm-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50030 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50030 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 500m, memory: 512Mi }
+            limits:   { cpu: 2000m, memory: 2Gi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

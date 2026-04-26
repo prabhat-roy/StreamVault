@@ -1,0 +1,12 @@
+# Per-service producer + consumer ACLs.
+acls:
+  - { principal: "User:ingest-service",          operation: Write,   resource: "Topic:ingest.asset.received" }
+  - { principal: "User:transcoding-service",     operation: Read,    resource: "Topic:media.transcode.requested" }
+  - { principal: "User:transcoding-service",     operation: Write,   resource: "Topic:media.transcode.completed" }
+  - { principal: "User:drm-service",             operation: Write,   resource: "Topic:drm.licence.issued" }
+  - { principal: "User:playback-orchestrator",   operation: Write,   resource: "Topic:playback.session.started" }
+  - { principal: "User:playback-orchestrator",   operation: Write,   resource: "Topic:playback.session.ended" }
+  - { principal: "User:playback-orchestrator",   operation: Write,   resource: "Topic:playback.heartbeat" }
+  - { principal: "User:qoe-service",             operation: Read,    resource: "Topic:playback.heartbeat" }
+  - { principal: "User:qoe-service",             operation: Write,   resource: "Topic:qoe.event.recorded" }
+  - { principal: "User:notification-orchestrator", operation: Read,  resource: "Topic:subscription.payment.failed" }

@@ -1,0 +1,18 @@
+groups:
+  - name: streamvault-drm
+    rules:
+      - alert: LicenceIssueFailureRate
+        expr: |
+          sum(rate(drm_licence_failure_total[5m]))
+          /
+          sum(rate(drm_licence_request_total[5m]))
+          > 0.01
+        for: 5m
+        labels: { severity: critical }
+        annotations: { summary: "DRM licence failure above 1%", runbook: https://runbooks.streamvault.io/drm-failure }
+
+      - alert: HSMUnreachable
+        expr: up{job="vault-hsm"} == 0
+        for: 1m
+        labels: { severity: page }
+        annotations: { summary: "Vault HSM unreachable — DRM offline" }

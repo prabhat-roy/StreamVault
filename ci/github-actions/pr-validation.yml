@@ -1,0 +1,33 @@
+name: pr-validation
+on:
+  pull_request:
+    branches: [main]
+permissions: { contents: read, security-events: write, pull-requests: read }
+jobs:
+  lint-and-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Hadolint
+        uses: hadolint/hadolint-action@v3
+        with: { recursive: true }
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+      - name: Trivy FS
+        uses: aquasecurity/trivy-action@master
+        with: { scan-type: fs, severity: CRITICAL,HIGH }
+      - name: Semgrep
+        uses: semgrep/semgrep-action@v1
+      - name: CodeQL init
+        uses: github/codeql-action/init@v3
+        with: { languages: 'go,java,javascript,python' }
+      - name: CodeQL analyze
+        uses: github/codeql-action/analyze@v3
+      - name: OPA conftest (manifests + DRM key egress)
+        run: |
+          curl -sSL https://github.com/open-policy-agent/conftest/releases/latest/download/conftest_Linux_x86_64.tar.gz | tar -xzC /usr/local/bin
+          conftest test --policy security/opa/policies manifests/
+      - name: OpenSSF Scorecard
+        uses: ossf/scorecard-action@v2
+        with: { results_file: scorecard.sarif, results_format: sarif }

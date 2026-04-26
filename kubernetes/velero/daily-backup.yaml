@@ -1,0 +1,10 @@
+apiVersion: velero.io/v1
+kind: Schedule
+metadata: { name: streamvault-daily, namespace: velero }
+spec:
+  schedule: "0 2 * * *"
+  template:
+    includedNamespaces: [streamvault, streamvault-platform, streamvault-drm, streamvault-live, streamvault-catalogue]
+    excludedResources: [secrets]   # DRM keys live in Vault HSM, never in K8s Secrets
+    snapshotVolumes: true
+    ttl: 720h0m0s

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: { name: playback-orchestrator, namespace: streamvault }
+data:
+  LOG_LEVEL: info
+  PORT: "50060"
+  JOIN_TIME_SLO_MS: "2000"
+  REBUFFER_SLO_PCT: "0.5"

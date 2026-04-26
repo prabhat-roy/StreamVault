@@ -1,0 +1,9 @@
+image: { repository: harbor.streamvault.internal/streamvault/stream-packager, tag: latest, pullPolicy: IfNotPresent }
+replicaCount: 6
+service: { type: ClusterIP, port: 50040 }
+resources: { requests: { cpu: "2", memory: 4Gi }, limits: { cpu: "6", memory: 12Gi } }
+env: { LOG_LEVEL: info, PORT: "50040", LL_HLS_TARGET_LATENCY_MS: "3000", CMAF_CHUNK_DURATION_MS: "200" }
+serviceAccount: { create: true, name: stream-packager, annotations: {} }
+podSecurityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+containerSecurityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }
+domain: live

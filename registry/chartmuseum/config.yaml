@@ -1,0 +1,11 @@
+storage:
+  type: amazon
+  bucket: streamvault-helm-charts
+  region: us-east-1
+auth:
+  basic:
+    user: chartadmin
+    pass: REPLACE_VIA_SECRET
+chart:
+  index:
+    refreshInterval: 5m

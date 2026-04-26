@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata: { name: streamvault-domain-deploy, namespace: argo }
+spec:
+  entrypoint: deploy
+  arguments:
+    parameters:
+      - { name: domain }
+      - { name: cloud }
+      - { name: version }
+  templates:
+    - name: deploy
+      steps:
+        - - { name: status-page, template: cachet-update }
+        - - { name: db-migration, template: flyway-migrate }
+        - - { name: helm-upgrade, template: helm }
+        - - { name: smoke-tests, template: hurl-smoke }
+        - - { name: warm-cdn,    template: cdn-purge }
+    - name: cachet-update
+      container: { image: streamvault/jenkins-agent:latest }
+    - name: flyway-migrate
+      container: { image: flyway/flyway:10 }
+    - name: helm
+      container: { image: alpine/helm:3.16 }
+    - name: hurl-smoke
+      container: { image: ghcr.io/orange-opensource/hurl:5.0.1 }
+    - name: cdn-purge
+      container: { image: curlimages/curl:8.10.1, command: ["sh","-c","curl -X POST $CDN_PURGE_URL"] }

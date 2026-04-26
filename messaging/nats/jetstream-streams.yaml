@@ -1,0 +1,24 @@
+# NATS JetStream streams for live signalling + watch-party.
+streams:
+  - name: LIVE_SIGNAL
+    subjects: ["live.signal.>"]
+    storage: file
+    retention: limits
+    max_age: 1h
+    max_msgs: 10000000
+    replicas: 3
+
+  - name: WATCH_PARTY
+    subjects: ["watch.party.>"]
+    storage: file
+    retention: workqueue
+    max_age: 6h
+    replicas: 3
+    discard: old
+
+  - name: PLAYER_HEARTBEAT
+    subjects: ["player.heartbeat.>"]
+    storage: memory
+    retention: limits
+    max_age: 30s
+    replicas: 1

@@ -1,0 +1,3 @@
+serviceAccount: { annotations: { eks.amazonaws.com/role-arn: arn:aws:iam::000000000000:role/streamvault-drm } }
+storageClass: gp3
+env: { KMS_KEY_ARN: "arn:aws:kms:us-east-1:000000000000:key/drm-master" }

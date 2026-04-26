@@ -1,0 +1,15 @@
+{
+  "realm": "streamvault",
+  "enabled": true,
+  "registrationAllowed": true,
+  "loginWithEmailAllowed": true,
+  "passwordPolicy": "length(12) and upperCase(1) and lowerCase(1) and digits(1) and specialChars(1)",
+  "otpPolicyType": "totp",
+  "clients": [
+    { "clientId": "web-player",     "publicClient": true,  "redirectUris": ["https://*.streamvault.io/*"], "webOrigins": ["+"] },
+    { "clientId": "mobile-player",  "publicClient": true,  "redirectUris": ["streamvault://callback"]    },
+    { "clientId": "tv-player",      "publicClient": true,  "redirectUris": ["https://tv.streamvault.io/*"] },
+    { "clientId": "studio-portal",  "publicClient": false, "redirectUris": ["https://studio.streamvault.io/*"], "secret": "REPLACE" }
+  ],
+  "roles": { "realm": [ {"name":"viewer"},{"name":"creator"},{"name":"studio-admin"},{"name":"platform-admin"} ] }
+}

@@ -1,6 +1,16 @@
-# Ci — StreamVault
+# CI — StreamVault
 
-CI/CD pipelines across multiple platforms (Jenkins, GitHub Actions, GitLab CI, Tekton, Drone, etc.).
+Multi-system CI: Jenkins (primary), GitHub Actions, GitLab CI, Tekton.
 
-> Skeleton placeholder. Content will be added as the project takes shape.
-> See [../README.md](../README.md) for the StreamVault project overview.
+```
+ci/
+├── jenkins/         Build / Security / Deploy Jenkinsfiles + agent pod
+├── github-actions/  PR validation + multi-cloud deploy
+├── gitlab-ci/       Kaniko build + Trivy + Cosign signing per service
+└── tekton/          Cloud-agnostic Pipeline + helm-upgrade Task
+```
+
+All builds publish OCI artefacts to `harbor.streamvault.internal/streamvault/<svc>:<sha>`,
+sign with Cosign keyless, and emit SBOMs (CycloneDX). DRM-related services additionally
+run an OPA gate (`security/opa/policies/drm-key-no-log.rego`) to ensure no key material
+is logged.
