@@ -11,6 +11,7 @@
 - Make
 - Git
 - A POSIX shell (bash / zsh)
+- FFmpeg 6+ (for local media pipeline tinkering)
 
 Language toolchains (install only what you need for the services you'll touch):
 
@@ -22,6 +23,7 @@ Language toolchains (install only what you need for the services you'll touch):
 | Python | 3.12+ | <https://www.python.org/> |
 | Node.js | 22+ | <https://nodejs.org/> |
 | Rust | 1.80+ | <https://rustup.rs/> |
+| C++ | clang 17 / gcc 13 | platform-specific |
 | TypeScript | 5+ | via npm |
 
 Optional but recommended:
@@ -30,15 +32,16 @@ Optional but recommended:
 - `helm` v3
 - `buf` (proto codegen)
 - `kubectl` v1.30+
+- `shaka-packager` (HLS / DASH packaging)
 
 ---
 
 ## First-time setup
 
-`ash
+```bash
 # 1. Clone and enter the project
-git clone <git-url>
-cd <project>
+git clone https://github.com/prabhat-roy/StreamVault.git
+cd StreamVault
 
 # 2. Copy the env template
 cp .env.example .env
@@ -46,22 +49,23 @@ cp .env.example .env
 # 3. Install local dev tooling
 make bootstrap
 
-# 4. Start the local stack (Postgres, Mongo, Redis, Kafka, MinIO, Keycloak, etc.)
+# 4. Start the local stack (Postgres, Mongo, Redis, Cassandra, Elastic, ClickHouse,
+#    Kafka, NATS, MinIO, Vault, Keycloak, Prometheus, Grafana, Loki, Jaeger)
 make compose-up
 
 # 5. Verify services are healthy
 docker compose ps
-`
+```
 
 ---
 
 ## Running tests
 
-`ash
+```bash
 make test         # all tests across all services
 make lint         # lint everything
 make fmt          # format everything
-`
+```
 
 ---
 
@@ -69,29 +73,29 @@ make fmt          # format everything
 
 Each service lives under `src/<domain>/<service>/` and has its own `Makefile`.
 
-`ash
+```bash
 cd src/<domain>/<service>
 make run          # start the service against the local stack
 make test         # service-local tests
-`
+```
 
 ---
 
 ## Generating proto bindings
 
-`ash
+```bash
 make proto        # regenerates all gRPC bindings from proto/
-`
+```
 
 ---
 
 ## Deploying to local Kubernetes
 
-`ash
+```bash
 kind create cluster --name local
 make deploy-local
 kubectl port-forward svc/api-gateway 8080:80
-`
+```
 
 ---
 
@@ -108,7 +112,8 @@ kubectl port-forward svc/api-gateway 8080:80
 | Terraform / OpenTofu | `infra/` |
 | CI pipelines | `ci/` |
 | GitOps configs | `gitops/` |
-| Observability configs | `observability/` |
+| Observability configs (incl. QoE SLOs) | `observability/` |
+| DRM and security policies | `security/` |
 | Architecture decisions | `docs/adr/` |
 | Operational runbooks | `docs/runbooks/` |
 

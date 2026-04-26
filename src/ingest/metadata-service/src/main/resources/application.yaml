@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: metadata-service
+server:
+  port: ${PORT:50011}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true

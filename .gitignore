@@ -148,3 +148,6 @@ kafka-data/
 # Claude-specific local files (not pushed)
 CLAUDE.md
 memory/
+
+# Build catalog (locally generated)
+.services.json
