@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: payment-gateway
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: payment-gateway, streamvault.io/domain: subscription }
+data:
+  LOG_LEVEL: info
+  PORT: "50181"

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ssai-service
+  namespace: streamvault
+  labels:
+    app.kubernetes.io/name: ssai-service
+    app.kubernetes.io/part-of: streamvault
+    streamvault.io/domain: ad
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: ssai-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: ssai-service, streamvault.io/domain: ad }
+    spec:
+      serviceAccountName: ssai-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: ssai-service
+          image: harbor.streamvault.internal/streamvault/ssai-service:latest
+          ports: [{ containerPort: 50224, name: http }]
+          envFrom: [{ configMapRef: { name: ssai-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50224 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50224 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: offline-licence
+  namespace: streamvault
+  labels:
+    app.kubernetes.io/name: offline-licence
+    app.kubernetes.io/part-of: streamvault
+    streamvault.io/domain: downloads
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: offline-licence } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: offline-licence, streamvault.io/domain: downloads }
+    spec:
+      serviceAccountName: offline-licence
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: offline-licence
+          image: harbor.streamvault.internal/streamvault/offline-licence:latest
+          ports: [{ containerPort: 50281, name: http }]
+          envFrom: [{ configMapRef: { name: offline-licence } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50281 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50281 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

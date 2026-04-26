@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: targeting-service
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: targeting-service, streamvault.io/domain: ad }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50222, targetPort: 50222 }]
+  selector: { app.kubernetes.io/name: targeting-service }

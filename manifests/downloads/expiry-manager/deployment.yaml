@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expiry-manager
+  namespace: streamvault
+  labels:
+    app.kubernetes.io/name: expiry-manager
+    app.kubernetes.io/part-of: streamvault
+    streamvault.io/domain: downloads
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: expiry-manager } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: expiry-manager, streamvault.io/domain: downloads }
+    spec:
+      serviceAccountName: expiry-manager
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: expiry-manager
+          image: harbor.streamvault.internal/streamvault/expiry-manager:latest
+          ports: [{ containerPort: 50283, name: http }]
+          envFrom: [{ configMapRef: { name: expiry-manager } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50283 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50283 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

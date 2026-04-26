@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: watch-party-service
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: watch-party-service, streamvault.io/domain: social }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50263, targetPort: 50263 }]
+  selector: { app.kubernetes.io/name: watch-party-service }

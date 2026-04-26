@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: licence-server
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: licence-server, streamvault.io/domain: drm }
+data:
+  LOG_LEVEL: info
+  PORT: "50080"

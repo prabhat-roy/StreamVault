@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: episode-service
+  namespace: streamvault
+  labels:
+    app.kubernetes.io/name: episode-service
+    app.kubernetes.io/part-of: streamvault
+    streamvault.io/domain: catalogue
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: episode-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: episode-service, streamvault.io/domain: catalogue }
+    spec:
+      serviceAccountName: episode-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: episode-service
+          image: harbor.streamvault.internal/streamvault/episode-service:latest
+          ports: [{ containerPort: 50142, name: http }]
+          envFrom: [{ configMapRef: { name: episode-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50142 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50142 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

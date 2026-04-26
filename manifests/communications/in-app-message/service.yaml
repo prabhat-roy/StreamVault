@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: in-app-message
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: in-app-message, streamvault.io/domain: communications }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50324, targetPort: 50324 }]
+  selector: { app.kubernetes.io/name: in-app-message }

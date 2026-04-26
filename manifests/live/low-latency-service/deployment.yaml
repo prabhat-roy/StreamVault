@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: low-latency-service
+  namespace: streamvault
+  labels:
+    app.kubernetes.io/name: low-latency-service
+    app.kubernetes.io/part-of: streamvault
+    streamvault.io/domain: live
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: low-latency-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: low-latency-service, streamvault.io/domain: live }
+    spec:
+      serviceAccountName: low-latency-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: low-latency-service
+          image: harbor.streamvault.internal/streamvault/low-latency-service:latest
+          ports: [{ containerPort: 50123, name: http }]
+          envFrom: [{ configMapRef: { name: low-latency-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50123 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50123 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: abr-service
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: abr-service, streamvault.io/domain: cdn }
+data:
+  LOG_LEVEL: info
+  PORT: "50104"

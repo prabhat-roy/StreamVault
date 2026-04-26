@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: studio-dashboard
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: studio-dashboard, streamvault.io/domain: creator }
+data:
+  LOG_LEVEL: info
+  PORT: "50201"

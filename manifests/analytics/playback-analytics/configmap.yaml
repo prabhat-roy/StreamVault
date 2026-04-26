@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: playback-analytics
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: playback-analytics, streamvault.io/domain: analytics }
+data:
+  LOG_LEVEL: info
+  PORT: "50301"

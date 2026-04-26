@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: engagement-analytics
+  namespace: streamvault
+  labels:
+    app.kubernetes.io/name: engagement-analytics
+    app.kubernetes.io/part-of: streamvault
+    streamvault.io/domain: analytics
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: engagement-analytics } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: engagement-analytics, streamvault.io/domain: analytics }
+    spec:
+      serviceAccountName: engagement-analytics
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: engagement-analytics
+          image: harbor.streamvault.internal/streamvault/engagement-analytics:latest
+          ports: [{ containerPort: 50302, name: http }]
+          envFrom: [{ configMapRef: { name: engagement-analytics } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50302 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50302 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

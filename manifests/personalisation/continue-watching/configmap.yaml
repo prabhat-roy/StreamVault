@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: continue-watching
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: continue-watching, streamvault.io/domain: personalisation }
+data:
+  LOG_LEVEL: info
+  PORT: "50241"

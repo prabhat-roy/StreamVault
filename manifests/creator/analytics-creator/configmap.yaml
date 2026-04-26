@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: analytics-creator
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: analytics-creator, streamvault.io/domain: creator }
+data:
+  LOG_LEVEL: info
+  PORT: "50202"

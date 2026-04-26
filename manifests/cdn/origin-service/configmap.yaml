@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: origin-service
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: origin-service, streamvault.io/domain: cdn }
+data:
+  LOG_LEVEL: info
+  PORT: "50101"

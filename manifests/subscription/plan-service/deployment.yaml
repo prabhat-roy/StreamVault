@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plan-service
+  namespace: streamvault
+  labels:
+    app.kubernetes.io/name: plan-service
+    app.kubernetes.io/part-of: streamvault
+    streamvault.io/domain: subscription
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: plan-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: plan-service, streamvault.io/domain: subscription }
+    spec:
+      serviceAccountName: plan-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: plan-service
+          image: harbor.streamvault.internal/streamvault/plan-service:latest
+          ports: [{ containerPort: 50180, name: http }]
+          envFrom: [{ configMapRef: { name: plan-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50180 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50180 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

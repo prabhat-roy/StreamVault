@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clips-sharing
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: clips-sharing, streamvault.io/domain: social }
+data:
+  LOG_LEVEL: info
+  PORT: "50264"

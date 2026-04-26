@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification-orchestrator
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: notification-orchestrator, streamvault.io/domain: communications }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50320, targetPort: 50320 }]
+  selector: { app.kubernetes.io/name: notification-orchestrator }

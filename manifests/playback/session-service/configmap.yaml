@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: session-service
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: session-service, streamvault.io/domain: playback }
+data:
+  LOG_LEVEL: info
+  PORT: "50160"

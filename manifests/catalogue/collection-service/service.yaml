@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: collection-service
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: collection-service, streamvault.io/domain: catalogue }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50141, targetPort: 50141 }]
+  selector: { app.kubernetes.io/name: collection-service }

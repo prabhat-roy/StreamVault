@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: trending-service
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: trending-service, streamvault.io/domain: personalisation }
+data:
+  LOG_LEVEL: info
+  PORT: "50242"

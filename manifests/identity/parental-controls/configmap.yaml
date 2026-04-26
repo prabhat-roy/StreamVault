@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: parental-controls
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: parental-controls, streamvault.io/domain: identity }
+data:
+  LOG_LEVEL: info
+  PORT: "50022"

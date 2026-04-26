@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clips-sharing
+  namespace: streamvault
+  labels:
+    app.kubernetes.io/name: clips-sharing
+    app.kubernetes.io/part-of: streamvault
+    streamvault.io/domain: social
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: clips-sharing } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: clips-sharing, streamvault.io/domain: social }
+    spec:
+      serviceAccountName: clips-sharing
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: clips-sharing
+          image: harbor.streamvault.internal/streamvault/clips-sharing:latest
+          ports: [{ containerPort: 50264, name: http }]
+          envFrom: [{ configMapRef: { name: clips-sharing } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50264 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50264 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

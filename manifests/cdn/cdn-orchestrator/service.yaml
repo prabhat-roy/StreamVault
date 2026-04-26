@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cdn-orchestrator
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: cdn-orchestrator, streamvault.io/domain: cdn }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50100, targetPort: 50100 }]
+  selector: { app.kubernetes.io/name: cdn-orchestrator }

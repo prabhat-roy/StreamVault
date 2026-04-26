@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: search-service
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: search-service, streamvault.io/domain: catalogue }
+data:
+  LOG_LEVEL: info
+  PORT: "50140"

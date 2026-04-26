@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: in-app-message
+  namespace: streamvault
+  labels:
+    app.kubernetes.io/name: in-app-message
+    app.kubernetes.io/part-of: streamvault
+    streamvault.io/domain: communications
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: in-app-message } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: in-app-message, streamvault.io/domain: communications }
+    spec:
+      serviceAccountName: in-app-message
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: in-app-message
+          image: harbor.streamvault.internal/streamvault/in-app-message:latest
+          ports: [{ containerPort: 50324, name: http }]
+          envFrom: [{ configMapRef: { name: in-app-message } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50324 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50324 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

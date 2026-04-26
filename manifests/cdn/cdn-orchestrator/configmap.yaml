@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cdn-orchestrator
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: cdn-orchestrator, streamvault.io/domain: cdn }
+data:
+  LOG_LEVEL: info
+  PORT: "50100"
