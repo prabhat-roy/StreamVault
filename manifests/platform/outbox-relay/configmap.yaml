@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: outbox-relay
+  namespace: streamvault
+  labels: { app.kubernetes.io/name: outbox-relay, streamvault.io/domain: platform }
+data:
+  LOG_LEVEL: info
+  PORT: "51002"
