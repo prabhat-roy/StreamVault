@@ -1,8 +1,8 @@
-# watch-party-service
+﻿# watch-party-service
 
-Service in the **social** domain of StreamVault.
+Service in the social domain of StreamVault.
 
-**Language:** Go · **Port:** 50263
+Language: Go Â· Port: 50263
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/watch-party-service/](../../../helm/charts/watch-party-service/) — Helm chart
-- [manifests/social/watch-party-service/](../../../manifests/social/watch-party-service/) — Raw K8s manifests
+- [helm/charts/watch-party-service/](../../../helm/charts/watch-party-service/) â€” Helm chart
+- [manifests/social/watch-party-service/](../../../manifests/social/watch-party-service/) â€” Raw K8s manifests

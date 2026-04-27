@@ -1,8 +1,8 @@
-# offline-licence
+﻿# offline-licence
 
-Service in the **downloads** domain of StreamVault.
+Service in the downloads domain of StreamVault.
 
-**Language:** Go · **Port:** 50281
+Language: Go Â· Port: 50281
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/offline-licence/](../../../helm/charts/offline-licence/) — Helm chart
-- [manifests/downloads/offline-licence/](../../../manifests/downloads/offline-licence/) — Raw K8s manifests
+- [helm/charts/offline-licence/](../../../helm/charts/offline-licence/) â€” Helm chart
+- [manifests/downloads/offline-licence/](../../../manifests/downloads/offline-licence/) â€” Raw K8s manifests

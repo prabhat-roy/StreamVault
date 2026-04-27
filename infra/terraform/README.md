@@ -1,7 +1,7 @@
-# Terraform — StreamVault Multi-Cloud Infrastructure
+﻿# Terraform â€” StreamVault Multi-Cloud Infrastructure
 
-Each cloud has a **complete, standalone** deployment path. A team can pick **AWS,
-GCP, or Azure** and bring up the entire StreamVault platform on it without depending
+Each cloud has a complete, standalone deployment path. A team can pick AWS,
+GCP, or Azure and bring up the entire StreamVault platform on it without depending
 on the other clouds.
 
 ## Cloud-equivalent services

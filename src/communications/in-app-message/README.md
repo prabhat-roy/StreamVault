@@ -1,8 +1,8 @@
-# in-app-message
+﻿# in-app-message
 
-Service in the **communications** domain of StreamVault.
+Service in the communications domain of StreamVault.
 
-**Language:** Go · **Port:** 50324
+Language: Go Â· Port: 50324
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/in-app-message/](../../../helm/charts/in-app-message/) — Helm chart
-- [manifests/communications/in-app-message/](../../../manifests/communications/in-app-message/) — Raw K8s manifests
+- [helm/charts/in-app-message/](../../../helm/charts/in-app-message/) â€” Helm chart
+- [manifests/communications/in-app-message/](../../../manifests/communications/in-app-message/) â€” Raw K8s manifests

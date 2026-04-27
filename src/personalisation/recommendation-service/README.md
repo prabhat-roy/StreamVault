@@ -1,8 +1,8 @@
-# recommendation-service
+﻿# recommendation-service
 
-Service in the **personalisation** domain of StreamVault.
+Service in the personalisation domain of StreamVault.
 
-**Language:** Go · **Port:** 50240
+Language: Go Â· Port: 50240
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/recommendation-service/](../../../helm/charts/recommendation-service/) — Helm chart
-- [manifests/personalisation/recommendation-service/](../../../manifests/personalisation/recommendation-service/) — Raw K8s manifests
+- [helm/charts/recommendation-service/](../../../helm/charts/recommendation-service/) â€” Helm chart
+- [manifests/personalisation/recommendation-service/](../../../manifests/personalisation/recommendation-service/) â€” Raw K8s manifests

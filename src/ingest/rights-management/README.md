@@ -1,5 +1,5 @@
-# rights-management
+﻿# rights-management
 
 Content rights, windowing, territory restrictions
 
-**Domain:** `ingest` · **Language:** java · **Port:** 50012
+Domain: `ingest` Â· Language: java Â· Port: 50012

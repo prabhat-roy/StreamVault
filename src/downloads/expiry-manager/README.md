@@ -1,8 +1,8 @@
-# expiry-manager
+﻿# expiry-manager
 
-Service in the **downloads** domain of StreamVault.
+Service in the downloads domain of StreamVault.
 
-**Language:** Go · **Port:** 50283
+Language: Go Â· Port: 50283
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/expiry-manager/](../../../helm/charts/expiry-manager/) — Helm chart
-- [manifests/downloads/expiry-manager/](../../../manifests/downloads/expiry-manager/) — Raw K8s manifests
+- [helm/charts/expiry-manager/](../../../helm/charts/expiry-manager/) â€” Helm chart
+- [manifests/downloads/expiry-manager/](../../../manifests/downloads/expiry-manager/) â€” Raw K8s manifests

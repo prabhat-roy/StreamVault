@@ -1,8 +1,8 @@
-# playback-analytics
+﻿# playback-analytics
 
-Service in the **analytics** domain of StreamVault.
+Service in the analytics domain of StreamVault.
 
-**Language:** Go · **Port:** 50301
+Language: Go Â· Port: 50301
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/playback-analytics/](../../../helm/charts/playback-analytics/) — Helm chart
-- [manifests/analytics/playback-analytics/](../../../manifests/analytics/playback-analytics/) — Raw K8s manifests
+- [helm/charts/playback-analytics/](../../../helm/charts/playback-analytics/) â€” Helm chart
+- [manifests/analytics/playback-analytics/](../../../manifests/analytics/playback-analytics/) â€” Raw K8s manifests

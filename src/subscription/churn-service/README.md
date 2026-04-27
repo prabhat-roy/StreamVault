@@ -1,8 +1,8 @@
-# churn-service
+﻿# churn-service
 
-Service in the **subscription** domain of StreamVault.
+Service in the subscription domain of StreamVault.
 
-**Language:** Go · **Port:** 50183
+Language: Go Â· Port: 50183
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/churn-service/](../../../helm/charts/churn-service/) — Helm chart
-- [manifests/subscription/churn-service/](../../../manifests/subscription/churn-service/) — Raw K8s manifests
+- [helm/charts/churn-service/](../../../helm/charts/churn-service/) â€” Helm chart
+- [manifests/subscription/churn-service/](../../../manifests/subscription/churn-service/) â€” Raw K8s manifests

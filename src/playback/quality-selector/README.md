@@ -1,8 +1,8 @@
-# quality-selector
+﻿# quality-selector
 
-Service in the **playback** domain of StreamVault.
+Service in the playback domain of StreamVault.
 
-**Language:** Go · **Port:** 50162
+Language: Go Â· Port: 50162
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/quality-selector/](../../../helm/charts/quality-selector/) — Helm chart
-- [manifests/playback/quality-selector/](../../../manifests/playback/quality-selector/) — Raw K8s manifests
+- [helm/charts/quality-selector/](../../../helm/charts/quality-selector/) â€” Helm chart
+- [manifests/playback/quality-selector/](../../../manifests/playback/quality-selector/) â€” Raw K8s manifests

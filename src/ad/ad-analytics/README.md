@@ -1,8 +1,8 @@
-# ad-analytics
+﻿# ad-analytics
 
-Service in the **ad** domain of StreamVault.
+Service in the ad domain of StreamVault.
 
-**Language:** Go · **Port:** 50223
+Language: Go Â· Port: 50223
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/ad-analytics/](../../../helm/charts/ad-analytics/) — Helm chart
-- [manifests/ad/ad-analytics/](../../../manifests/ad/ad-analytics/) — Raw K8s manifests
+- [helm/charts/ad-analytics/](../../../helm/charts/ad-analytics/) â€” Helm chart
+- [manifests/ad/ad-analytics/](../../../manifests/ad/ad-analytics/) â€” Raw K8s manifests

@@ -1,5 +1,5 @@
-# studio-bff
+﻿# studio-bff
 
 BFF for creator/studio portal (Angular)
 
-**Domain:** `platform` · **Language:** go · **Port:** 50004
+Domain: `platform` Â· Language: go Â· Port: 50004

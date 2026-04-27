@@ -1,8 +1,8 @@
-# episode-service
+﻿# episode-service
 
-Service in the **catalogue** domain of StreamVault.
+Service in the catalogue domain of StreamVault.
 
-**Language:** Go · **Port:** 50142
+Language: Go Â· Port: 50142
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/episode-service/](../../../helm/charts/episode-service/) — Helm chart
-- [manifests/catalogue/episode-service/](../../../manifests/catalogue/episode-service/) — Raw K8s manifests
+- [helm/charts/episode-service/](../../../helm/charts/episode-service/) â€” Helm chart
+- [manifests/catalogue/episode-service/](../../../manifests/catalogue/episode-service/) â€” Raw K8s manifests

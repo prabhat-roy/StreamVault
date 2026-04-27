@@ -1,5 +1,5 @@
-# content-partner
+﻿# content-partner
 
 Studio/partner onboarding and contracts
 
-**Domain:** `ingest` · **Language:** java · **Port:** 50013
+Domain: `ingest` Â· Language: java Â· Port: 50013

@@ -1,8 +1,8 @@
-# abr-service
+﻿# abr-service
 
-Service in the **cdn** domain of StreamVault.
+Service in the cdn domain of StreamVault.
 
-**Language:** Go · **Port:** 50104
+Language: Go Â· Port: 50104
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/abr-service/](../../../helm/charts/abr-service/) — Helm chart
-- [manifests/cdn/abr-service/](../../../manifests/cdn/abr-service/) — Raw K8s manifests
+- [helm/charts/abr-service/](../../../helm/charts/abr-service/) â€” Helm chart
+- [manifests/cdn/abr-service/](../../../manifests/cdn/abr-service/) â€” Raw K8s manifests

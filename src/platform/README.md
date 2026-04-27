@@ -1,6 +1,6 @@
-# platform — StreamVault
+﻿# platform â€” StreamVault
 
-Services in the **platform** domain.
+Services in the platform domain.
 
 | Service | Language | gRPC port | Description |
 |---|---|---|---|

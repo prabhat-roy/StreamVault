@@ -1,8 +1,8 @@
-# transcoding-service
+﻿# transcoding-service
 
 FFmpeg-based transcoding engine (HLS/DASH/CMAF, GPU encode)
 
-**Domain:** `media` · **Language:** C++ 20 · **Port:** 50020
+Domain: `media` Â· Language: C++ 20 Â· Port: 50020
 
 The transcoding engine is the heart of StreamVault's media pipeline:
 

@@ -1,8 +1,8 @@
-# ad-server
+﻿# ad-server
 
-Service in the **ad** domain of StreamVault.
+Service in the ad domain of StreamVault.
 
-**Language:** Go · **Port:** 50220
+Language: Go Â· Port: 50220
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/ad-server/](../../../helm/charts/ad-server/) — Helm chart
-- [manifests/ad/ad-server/](../../../manifests/ad/ad-server/) — Raw K8s manifests
+- [helm/charts/ad-server/](../../../helm/charts/ad-server/) â€” Helm chart
+- [manifests/ad/ad-server/](../../../manifests/ad/ad-server/) â€” Raw K8s manifests

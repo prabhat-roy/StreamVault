@@ -1,8 +1,8 @@
-# forensic-tracker
+﻿# forensic-tracker
 
-Service in the **drm** domain of StreamVault.
+Service in the drm domain of StreamVault.
 
-**Language:** Go · **Port:** 50082
+Language: Go Â· Port: 50082
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/forensic-tracker/](../../../helm/charts/forensic-tracker/) — Helm chart
-- [manifests/drm/forensic-tracker/](../../../manifests/drm/forensic-tracker/) — Raw K8s manifests
+- [helm/charts/forensic-tracker/](../../../helm/charts/forensic-tracker/) â€” Helm chart
+- [manifests/drm/forensic-tracker/](../../../manifests/drm/forensic-tracker/) â€” Raw K8s manifests

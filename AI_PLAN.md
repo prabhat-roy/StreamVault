@@ -1,4 +1,4 @@
-# AI_PLAN.md — StreamVault (Media, OTT & Streaming Platform)
+﻿# AI_PLAN.md â€” StreamVault (Media, OTT & Streaming Platform)
 
 > Hierarchical AI/ML strategy. Reuses the Paperclip / OpenClaw / NemoClaw
 > agent platform first defined in [ShopOS/AI.md](../ShopOS/AI.md). This file
@@ -8,17 +8,17 @@
 
 ## 1. Why AI in StreamVault
 
-OTT economics depend on three AI surfaces: **personalisation**, **content
-operations** (transcode, moderation, captioning), and **monetisation**
+OTT economics depend on three AI surfaces: personalisation, content
+operations (transcode, moderation, captioning), and monetisation
 (ads, churn). All three are now table-stakes.
 
-- **Recommendations** — beyond simple two-tower; transformer rankers with
+- Recommendations â€” beyond simple two-tower; transformer rankers with
   diversity / freshness / business constraints.
-- **Content moderation** — UGC + comments, multilingual, multi-modal.
-- **Transcription + dubbing + closed captions** — at scale, in 40+ langs.
-- **Ad-targeting + dynamic ad insertion** — privacy-respecting, on-device
+- Content moderation â€” UGC + comments, multilingual, multi-modal.
+- Transcription + dubbing + closed captions â€” at scale, in 40+ langs.
+- Ad-targeting + dynamic ad insertion â€” privacy-respecting, on-device
   cohort signals.
-- **Encoding / bitrate ladder optimisation** — VMAF-driven per-title.
+- Encoding / bitrate ladder optimisation â€” VMAF-driven per-title.
 
 DRM, content licensing geo-rules, GDPR / COPPA, accessibility (CVAA, EAA)
 are the binding constraints.
@@ -46,14 +46,14 @@ are the binding constraints.
 
 ## 3. Hierarchical Agent Architecture
 
-Reuses **OpenClaw** / **Paperclip** / **NemoClaw** from `ShopOS/AI.md`.
+Reuses OpenClaw / Paperclip / NemoClaw from `ShopOS/AI.md`.
 
-### Tier 0 — Master Architect Agent
+### Tier 0 â€” Master Architect Agent
 
-`stream-architect` — researches AI tooling, proposes services, on-boards
+`stream-architect` â€” researches AI tooling, proposes services, on-boards
 Tier-1 leads, weekly written report. Read-only on prod.
 
-### Tier 1 — Division Leads (5)
+### Tier 1 â€” Division Leads (5)
 
 | Agent | Scope |
 |-------|-------|
@@ -63,32 +63,32 @@ Tier-1 leads, weekly written report. Read-only on prod.
 | `stream-dataml-lead`     | Feature store, training, drift, fairness |
 | `stream-platform-lead`   | Cross-cutting (idempotency, saga, outbox), edge |
 
-### Tier 2 — Specialist Agents
+### Tier 2 â€” Specialist Agents
 
-**By language**: Go, Java, Kotlin, Python, Node, Rust, C++ (codec),
+By language: Go, Java, Kotlin, Python, Node, Rust, C++ (codec),
 TypeScript, Swift, Kotlin (Android), Dart.
 
-**By tool**: PostgreSQL, MongoDB, Redis, Cassandra, ScyllaDB, ClickHouse,
+By tool: PostgreSQL, MongoDB, Redis, Cassandra, ScyllaDB, ClickHouse,
 TimescaleDB, Kafka, NATS, RabbitMQ, Pulsar, Vault, Keycloak, OPA,
 Kyverno, Falco, Cilium, Istio, ArgoCD, Argo Workflows, Prometheus,
 Grafana, Loki, Jaeger, OpenTelemetry, MinIO, Trivy, Cosign, Druid,
-**FFmpeg pipelines**, **Bento4**, **Shaka Packager**, **MediaMTX**,
-**OvenMediaEngine**, **AV1 / SVT-AV1**, **VVenC** (VVC), **VMAF**,
-**MPEG-DASH / HLS** packaging, OpenFGA, Wazuh, **Streamlink** ingest,
-**OBS-NDI** bridge.
+FFmpeg pipelines, Bento4, Shaka Packager, MediaMTX,
+OvenMediaEngine, AV1 / SVT-AV1, VVenC (VVC), VMAF,
+MPEG-DASH / HLS packaging, OpenFGA, Wazuh, Streamlink ingest,
+OBS-NDI bridge.
 
-**By service** — one agent per microservice (~195). Owns README,
+By service â€” one agent per microservice (~195). Owns README,
 OpenAPI, tests, CHANGELOG, deps, /healthz.
 
-### Tier 3 — Ephemeral Workers
+### Tier 3 â€” Ephemeral Workers
 
 Spawned per encode job, per moderation backlog burst, per recommender
 retraining slot.
 
 ### Lifecycle
 
-Research → Document → Implement → Test → Review → Deploy → Monitor →
-Respond → Upgrade → Report. Plus a **license-region gate**: agents
+Research â†’ Document â†’ Implement â†’ Test â†’ Review â†’ Deploy â†’ Monitor â†’
+Respond â†’ Upgrade â†’ Report. Plus a license-region gate: agents
 proposing taxonomy / catalog changes must respect content-licensing
 geo-rules.
 
@@ -98,27 +98,27 @@ geo-rules.
 
 ```
 ai-platform/
-├── cluster: stream-ai-{aws,gcp,azure}    ← cloud GPU pool
-├── cluster: stream-ai-encode             ← dedicated H100/A100/L40 encode pool
-├── namespace: stream-ai-control           ← Paperclip
-├── namespace: stream-ai-agents            ← OpenClaw runtime
-├── namespace: stream-ai-sandbox           ← NemoClaw
-├── namespace: stream-ai-models            ← vLLM, Ollama, LiteLLM, Triton
-├── namespace: stream-ai-data              ← Qdrant, Weaviate, MinIO, MLflow
-├── namespace: stream-ai-obs               ← Langfuse, Phoenix
-└── namespace: stream-ai-pipelines         ← Argo Workflows
+â”œâ”€â”€ cluster: stream-ai-{aws,gcp,azure}    â† cloud GPU pool
+â”œâ”€â”€ cluster: stream-ai-encode             â† dedicated H100/A100/L40 encode pool
+â”œâ”€â”€ namespace: stream-ai-control           â† Paperclip
+â”œâ”€â”€ namespace: stream-ai-agents            â† OpenClaw runtime
+â”œâ”€â”€ namespace: stream-ai-sandbox           â† NemoClaw
+â”œâ”€â”€ namespace: stream-ai-models            â† vLLM, Ollama, LiteLLM, Triton
+â”œâ”€â”€ namespace: stream-ai-data              â† Qdrant, Weaviate, MinIO, MLflow
+â”œâ”€â”€ namespace: stream-ai-obs               â† Langfuse, Phoenix
+â””â”€â”€ namespace: stream-ai-pipelines         â† Argo Workflows
 ```
 
 ### Hardware
 
-- **Cloud inference**: A10G/L4 for ranker + moderation; A100 for batch
+- Cloud inference: A10G/L4 for ranker + moderation; A100 for batch
   retraining.
-- **Encode pool**: NVIDIA NVENC + L40 / A100 for high-throughput VOD.
+- Encode pool: NVIDIA NVENC + L40 / A100 for high-throughput VOD.
 
 ### Software stack
 
-Standard set + media stack listed in tool-agents above. **Whisper-large-v3**
-for transcription, **XTTS / Coqui** for synthesised dubbing.
+Standard set + media stack listed in tool-agents above. Whisper-large-v3
+for transcription, XTTS / Coqui for synthesised dubbing.
 
 ### Data isolation
 
@@ -150,7 +150,7 @@ for transcription, **XTTS / Coqui** for synthesised dubbing.
 | 2 | Paperclip + NemoClaw; Tier-0 architect live |
 | 3 | Tier-1 leads; recommender v0 shadow |
 | 4 | Per-language / per-tool Tier-2 agents |
-| 5 | Per-service Tier-2 agents (recs → encode → moderation first) |
+| 5 | Per-service Tier-2 agents (recs â†’ encode â†’ moderation first) |
 | 6 | Auto-captions for VOD in 8 langs; per-title encode v1 |
 | 7 | Recommender v1; moderation v1 |
 | 8 | Voice search pilot; multi-cloud failover drill |
@@ -159,9 +159,9 @@ for transcription, **XTTS / Coqui** for synthesised dubbing.
 
 ## 7. Cost Envelope (target)
 
-- **Cloud infra**: $7,000 – $11,000 / month per primary cloud
-- **Encode pool**: $3,500 – $6,000 / month, scaling with VOD ingest
-- **No** subscription LLM spend
+- Cloud infra: $7,000 â€“ $11,000 / month per primary cloud
+- Encode pool: $3,500 â€“ $6,000 / month, scaling with VOD ingest
+- No subscription LLM spend
 
 ---
 

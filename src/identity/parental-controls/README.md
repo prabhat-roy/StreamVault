@@ -1,8 +1,8 @@
-# parental-controls
+﻿# parental-controls
 
-Service in the **identity** domain of StreamVault.
+Service in the identity domain of StreamVault.
 
-**Language:** Go · **Port:** 50022
+Language: Go Â· Port: 50022
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/parental-controls/](../../../helm/charts/parental-controls/) — Helm chart
-- [manifests/identity/parental-controls/](../../../manifests/identity/parental-controls/) — Raw K8s manifests
+- [helm/charts/parental-controls/](../../../helm/charts/parental-controls/) â€” Helm chart
+- [manifests/identity/parental-controls/](../../../manifests/identity/parental-controls/) â€” Raw K8s manifests

@@ -1,8 +1,8 @@
-# rating-service
+﻿# rating-service
 
-Service in the **social** domain of StreamVault.
+Service in the social domain of StreamVault.
 
-**Language:** Go · **Port:** 50261
+Language: Go Â· Port: 50261
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/rating-service/](../../../helm/charts/rating-service/) — Helm chart
-- [manifests/social/rating-service/](../../../manifests/social/rating-service/) — Raw K8s manifests
+- [helm/charts/rating-service/](../../../helm/charts/rating-service/) â€” Helm chart
+- [manifests/social/rating-service/](../../../manifests/social/rating-service/) â€” Raw K8s manifests

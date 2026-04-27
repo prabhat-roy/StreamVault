@@ -1,8 +1,8 @@
-# live-ingest
+﻿# live-ingest
 
-Service in the **live** domain of StreamVault.
+Service in the live domain of StreamVault.
 
-**Language:** Go · **Port:** 50120
+Language: Go Â· Port: 50120
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/live-ingest/](../../../helm/charts/live-ingest/) — Helm chart
-- [manifests/live/live-ingest/](../../../manifests/live/live-ingest/) — Raw K8s manifests
+- [helm/charts/live-ingest/](../../../helm/charts/live-ingest/) â€” Helm chart
+- [manifests/live/live-ingest/](../../../manifests/live/live-ingest/) â€” Raw K8s manifests

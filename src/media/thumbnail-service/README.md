@@ -1,5 +1,5 @@
-# thumbnail-service
+﻿# thumbnail-service
 
 Sprite/storyboard thumbnail generation
 
-**Domain:** `media` · **Language:** go · **Port:** 50021
+Domain: `media` Â· Language: go Â· Port: 50021

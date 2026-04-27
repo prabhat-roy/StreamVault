@@ -1,8 +1,8 @@
-# trial-service
+﻿# trial-service
 
-Service in the **subscription** domain of StreamVault.
+Service in the subscription domain of StreamVault.
 
-**Language:** Go · **Port:** 50182
+Language: Go Â· Port: 50182
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/trial-service/](../../../helm/charts/trial-service/) — Helm chart
-- [manifests/subscription/trial-service/](../../../manifests/subscription/trial-service/) — Raw K8s manifests
+- [helm/charts/trial-service/](../../../helm/charts/trial-service/) â€” Helm chart
+- [manifests/subscription/trial-service/](../../../manifests/subscription/trial-service/) â€” Raw K8s manifests

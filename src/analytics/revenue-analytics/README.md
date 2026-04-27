@@ -1,8 +1,8 @@
-# revenue-analytics
+﻿# revenue-analytics
 
-Service in the **analytics** domain of StreamVault.
+Service in the analytics domain of StreamVault.
 
-**Language:** Go · **Port:** 50303
+Language: Go Â· Port: 50303
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/revenue-analytics/](../../../helm/charts/revenue-analytics/) — Helm chart
-- [manifests/analytics/revenue-analytics/](../../../manifests/analytics/revenue-analytics/) — Raw K8s manifests
+- [helm/charts/revenue-analytics/](../../../helm/charts/revenue-analytics/) â€” Helm chart
+- [manifests/analytics/revenue-analytics/](../../../manifests/analytics/revenue-analytics/) â€” Raw K8s manifests

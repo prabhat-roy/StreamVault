@@ -1,8 +1,8 @@
-# analytics-creator
+﻿# analytics-creator
 
-Service in the **creator** domain of StreamVault.
+Service in the creator domain of StreamVault.
 
-**Language:** Go · **Port:** 50202
+Language: Go Â· Port: 50202
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/analytics-creator/](../../../helm/charts/analytics-creator/) — Helm chart
-- [manifests/creator/analytics-creator/](../../../manifests/creator/analytics-creator/) — Raw K8s manifests
+- [helm/charts/analytics-creator/](../../../helm/charts/analytics-creator/) â€” Helm chart
+- [manifests/creator/analytics-creator/](../../../manifests/creator/analytics-creator/) â€” Raw K8s manifests

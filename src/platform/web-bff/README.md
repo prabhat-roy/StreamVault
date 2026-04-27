@@ -1,8 +1,8 @@
-# web-bff
+﻿# web-bff
 
 BFF for web player (Next.js)
 
-**Domain:** `platform` · **Language:** go · **Port:** 50001
+Domain: `platform` Â· Language: go Â· Port: 50001
 
 ## Run locally
 
@@ -12,4 +12,4 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`

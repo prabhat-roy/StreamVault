@@ -1,8 +1,8 @@
-# dvr-service
+﻿# dvr-service
 
-Service in the **live** domain of StreamVault.
+Service in the live domain of StreamVault.
 
-**Language:** Go · **Port:** 50122
+Language: Go Â· Port: 50122
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/dvr-service/](../../../helm/charts/dvr-service/) — Helm chart
-- [manifests/live/dvr-service/](../../../manifests/live/dvr-service/) — Raw K8s manifests
+- [helm/charts/dvr-service/](../../../helm/charts/dvr-service/) â€” Helm chart
+- [manifests/live/dvr-service/](../../../manifests/live/dvr-service/) â€” Raw K8s manifests

@@ -1,8 +1,8 @@
-# stream-packager
+﻿# stream-packager
 
-Service in the **live** domain of StreamVault.
+Service in the live domain of StreamVault.
 
-**Language:** Go · **Port:** 50121
+Language: Go Â· Port: 50121
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/stream-packager/](../../../helm/charts/stream-packager/) — Helm chart
-- [manifests/live/stream-packager/](../../../manifests/live/stream-packager/) — Raw K8s manifests
+- [helm/charts/stream-packager/](../../../helm/charts/stream-packager/) â€” Helm chart
+- [manifests/live/stream-packager/](../../../manifests/live/stream-packager/) â€” Raw K8s manifests

@@ -1,8 +1,8 @@
-# ssai-service
+﻿# ssai-service
 
-Service in the **ad** domain of StreamVault.
+Service in the ad domain of StreamVault.
 
-**Language:** Go · **Port:** 50224
+Language: Go Â· Port: 50224
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/ssai-service/](../../../helm/charts/ssai-service/) — Helm chart
-- [manifests/ad/ssai-service/](../../../manifests/ad/ssai-service/) — Raw K8s manifests
+- [helm/charts/ssai-service/](../../../helm/charts/ssai-service/) â€” Helm chart
+- [manifests/ad/ssai-service/](../../../manifests/ad/ssai-service/) â€” Raw K8s manifests

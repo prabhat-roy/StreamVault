@@ -1,8 +1,8 @@
-# notification-orchestrator
+﻿# notification-orchestrator
 
-Service in the **communications** domain of StreamVault.
+Service in the communications domain of StreamVault.
 
-**Language:** Go · **Port:** 50320
+Language: Go Â· Port: 50320
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/notification-orchestrator/](../../../helm/charts/notification-orchestrator/) — Helm chart
-- [manifests/communications/notification-orchestrator/](../../../manifests/communications/notification-orchestrator/) — Raw K8s manifests
+- [helm/charts/notification-orchestrator/](../../../helm/charts/notification-orchestrator/) â€” Helm chart
+- [manifests/communications/notification-orchestrator/](../../../manifests/communications/notification-orchestrator/) â€” Raw K8s manifests

@@ -1,5 +1,5 @@
-# ingest-service
+﻿# ingest-service
 
 Content acquisition orchestrator (mezzanine intake)
 
-**Domain:** `ingest` · **Language:** go · **Port:** 50010
+Domain: `ingest` Â· Language: go Â· Port: 50010

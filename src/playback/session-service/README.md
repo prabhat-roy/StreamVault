@@ -1,8 +1,8 @@
-# session-service
+﻿# session-service
 
-Service in the **playback** domain of StreamVault.
+Service in the playback domain of StreamVault.
 
-**Language:** Go · **Port:** 50160
+Language: Go Â· Port: 50160
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/session-service/](../../../helm/charts/session-service/) — Helm chart
-- [manifests/playback/session-service/](../../../manifests/playback/session-service/) — Raw K8s manifests
+- [helm/charts/session-service/](../../../helm/charts/session-service/) â€” Helm chart
+- [manifests/playback/session-service/](../../../manifests/playback/session-service/) â€” Raw K8s manifests

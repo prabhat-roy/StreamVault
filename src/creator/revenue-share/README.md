@@ -1,8 +1,8 @@
-# revenue-share
+﻿# revenue-share
 
-Service in the **creator** domain of StreamVault.
+Service in the creator domain of StreamVault.
 
-**Language:** Go · **Port:** 50203
+Language: Go Â· Port: 50203
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/revenue-share/](../../../helm/charts/revenue-share/) — Helm chart
-- [manifests/creator/revenue-share/](../../../manifests/creator/revenue-share/) — Raw K8s manifests
+- [helm/charts/revenue-share/](../../../helm/charts/revenue-share/) â€” Helm chart
+- [manifests/creator/revenue-share/](../../../manifests/creator/revenue-share/) â€” Raw K8s manifests

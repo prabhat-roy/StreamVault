@@ -1,8 +1,8 @@
-# download-service
+﻿# download-service
 
-Service in the **downloads** domain of StreamVault.
+Service in the downloads domain of StreamVault.
 
-**Language:** Go · **Port:** 50280
+Language: Go Â· Port: 50280
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/download-service/](../../../helm/charts/download-service/) — Helm chart
-- [manifests/downloads/download-service/](../../../manifests/downloads/download-service/) — Raw K8s manifests
+- [helm/charts/download-service/](../../../helm/charts/download-service/) â€” Helm chart
+- [manifests/downloads/download-service/](../../../manifests/downloads/download-service/) â€” Raw K8s manifests
