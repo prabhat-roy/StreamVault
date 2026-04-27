@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package streamvault.catalogue.v1;
+option go_package = "github.com/prabhat-roy/StreamVault/proto/catalogue/v1;catalogue_v1";
+import "google/protobuf/timestamp.proto";
+
+message CatalogueCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message CatalogueUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message CatalogueDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

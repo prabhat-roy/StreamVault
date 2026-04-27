@@ -1,0 +1,10 @@
+﻿apiVersion: flink.apache.org/v1beta1
+kind: FlinkSessionJob
+metadata: { name: streamvault-event-enrichment, namespace: streamvault }
+spec:
+  deploymentName: streamvault-flink
+  job:
+    jarURI: s3://streamvault-flink-jobs/event-enrichment.jar
+    parallelism: 4
+    upgradeMode: savepoint
+    args: ["--source-topic", "streamvault.cdc.public.events", "--sink-topic", "streamvault.events.enriched"]

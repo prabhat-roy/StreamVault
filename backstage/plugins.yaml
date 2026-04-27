@@ -1,0 +1,6 @@
+﻿plugins:
+  - { id: tech-radar, config: { url: https://github.com/prabhat-roy/StreamVault/raw/main/backstage/tech-radar.json } }
+  - { id: lighthouse, config: { baseUrl: https://lhci.streamvault.internal } }
+  - { id: opencost,   config: { baseUrl: https://opencost.streamvault.internal } }
+  - { id: argocd,     config: { url: https://argocd.streamvault.internal, token: "${ARGOCD_TOKEN}" } }
+  - { id: kubernetes, config: { clusters: [{ name: streamvault-aws, url: https://eks.streamvault.aws.internal }, { name: streamvault-gcp, url: https://gke.streamvault.gcp.internal }, { name: streamvault-azure, url: https://aks.streamvault.azure.internal }] } }

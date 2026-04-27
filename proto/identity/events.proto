@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package streamvault.identity.v1;
+option go_package = "github.com/prabhat-roy/StreamVault/proto/identity/v1;identity_v1";
+import "google/protobuf/timestamp.proto";
+
+message IdentityCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message IdentityUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message IdentityDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package streamvault.discovery.v1;
+option go_package = "github.com/prabhat-roy/StreamVault/proto/discovery/v1;discovery_v1";
+import "google/protobuf/timestamp.proto";
+
+message DiscoveryCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message DiscoveryUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message DiscoveryDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

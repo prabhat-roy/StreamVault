@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package streamvault.trust_and_safety.v1;
+option go_package = "github.com/prabhat-roy/StreamVault/proto/trust-and-safety/v1;trust_and_safety_v1";
+import "google/protobuf/timestamp.proto";
+
+message TrustandsafetyCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message TrustandsafetyUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message TrustandsafetyDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

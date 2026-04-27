@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package streamvault.ad_tech.v1;
+option go_package = "github.com/prabhat-roy/StreamVault/proto/ad-tech/v1;ad_tech_v1";
+import "google/protobuf/timestamp.proto";
+
+message AdtechCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message AdtechUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message AdtechDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

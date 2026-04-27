@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package streamvault.encoding.v1;
+option go_package = "github.com/prabhat-roy/StreamVault/proto/encoding/v1;encoding_v1";
+import "google/protobuf/timestamp.proto";
+
+message EncodingCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message EncodingUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message EncodingDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

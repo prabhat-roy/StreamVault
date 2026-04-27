@@ -1,0 +1,10 @@
+﻿apiVersion: flink.apache.org/v1beta1
+kind: FlinkSessionJob
+metadata: { name: streamvault-aggregation, namespace: streamvault }
+spec:
+  deploymentName: streamvault-flink
+  job:
+    jarURI: s3://streamvault-flink-jobs/aggregation.jar
+    parallelism: 8
+    upgradeMode: savepoint
+    args: ["--source-topic", "streamvault.events.enriched", "--sink-topic", "streamvault.metrics.aggregated", "--window", "5m"]

@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package streamvault.recommendation.v1;
+option go_package = "github.com/prabhat-roy/StreamVault/proto/recommendation/v1;recommendation_v1";
+import "google/protobuf/timestamp.proto";
+
+message RecommendationCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message RecommendationUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message RecommendationDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

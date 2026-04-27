@@ -1,0 +1,38 @@
+﻿syntax = "proto3";
+
+package streamvault.trust_and_safety.v1;
+
+option go_package = "github.com/prabhat-roy/StreamVault/proto/trust_and_safety/v1;trust_and_safety_v1";
+option java_multiple_files = true;
+option java_package = "com.streamvault.trust_and_safety.v1";
+
+import "common/types.proto";
+import "google/protobuf/timestamp.proto";
+
+// trust_and_safety service for StreamVault
+service TrustandsafetyService {
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc List(ListRequest) returns (ListResponse);
+  rpc Create(CreateRequest) returns (CreateResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+}
+
+message Trustandsafety {
+  string id = 1;
+  string tenant_id = 2;
+  google.protobuf.Timestamp created_at = 3;
+  google.protobuf.Timestamp updated_at = 4;
+  map<string, string> attributes = 5;
+}
+
+message GetRequest    { string id = 1; }
+message GetResponse   { Trustandsafety entity = 1; }
+message ListRequest   { string tenant_id = 1; common.Pagination page = 2; }
+message ListResponse  { repeated Trustandsafety items = 1; common.Pagination page = 2; }
+message CreateRequest { Trustandsafety entity = 1; }
+message CreateResponse{ Trustandsafety entity = 1; }
+message UpdateRequest { Trustandsafety entity = 1; }
+message UpdateResponse{ Trustandsafety entity = 1; }
+message DeleteRequest { string id = 1; }
+message DeleteResponse{ bool ok = 1; }

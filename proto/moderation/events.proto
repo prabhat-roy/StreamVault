@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package streamvault.moderation.v1;
+option go_package = "github.com/prabhat-roy/StreamVault/proto/moderation/v1;moderation_v1";
+import "google/protobuf/timestamp.proto";
+
+message ModerationCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message ModerationUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message ModerationDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

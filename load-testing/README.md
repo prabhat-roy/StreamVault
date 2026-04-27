@@ -1,12 +1,5 @@
-# Load Testing — StreamVault
-
-```
-load-testing/
-├── k6/scenarios/         marquee-live-surge, vod-binge, search-burst, signup-storm
-├── locust/               long-tail catalogue browse simulation
-└── gatling/              billing renewal day spike
-```
-
-The `marquee-live-surge` scenario simulates a 30-million concurrent-viewer kickoff
-(e.g. World Cup final / awards show) — ramps to peak in 90 seconds, holds 2h,
-then graceful tail-off.
+﻿# Load testing for StreamVault
+- `k6/` — smoke, browse, spike, soak, checkout-flow scripts
+- `locust/` — 3 user classes + Dockerfile for distributed runs
+- `gatling/` — Commerce + Search simulations
+Run: `k6 run k6/smoke.js`  |  `locust -f locust/locustfile.py`  |  `gatling.sh -s streamvault.CommerceSimulation`

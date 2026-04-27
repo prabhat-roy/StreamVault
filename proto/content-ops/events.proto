@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package streamvault.content_ops.v1;
+option go_package = "github.com/prabhat-roy/StreamVault/proto/content-ops/v1;content_ops_v1";
+import "google/protobuf/timestamp.proto";
+
+message ContentopsCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message ContentopsUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message ContentopsDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

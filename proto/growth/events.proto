@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package streamvault.growth.v1;
+option go_package = "github.com/prabhat-roy/StreamVault/proto/growth/v1;growth_v1";
+import "google/protobuf/timestamp.proto";
+
+message GrowthCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message GrowthUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message GrowthDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

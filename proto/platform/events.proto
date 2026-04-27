@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package streamvault.platform.v1;
+option go_package = "github.com/prabhat-roy/StreamVault/proto/platform/v1;platform_v1";
+import "google/protobuf/timestamp.proto";
+
+message PlatformCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message PlatformUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message PlatformDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

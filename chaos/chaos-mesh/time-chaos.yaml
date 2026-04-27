@@ -1,0 +1,8 @@
+﻿apiVersion: chaos-mesh.org/v1alpha1
+kind: TimeChaos
+metadata: { name: streamvault-clock-skew, namespace: chaos-mesh }
+spec:
+  mode: one
+  selector: { namespaces: [streamvault] }
+  timeOffset: "+500ms"
+  duration: 3m
